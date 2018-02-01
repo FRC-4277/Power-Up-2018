@@ -37,8 +37,8 @@ public class MecanumDrive extends Subsystem {
 			backRightTalon = new TalonSRX(brPort);
 			backLeftTalon = new TalonSRX(blPort);
 			
-			backLeftTalon.setInverted(true);
-			frontLeftTalon.setInverted(true);
+			backRightTalon.setInverted(true);
+			frontRightTalon.setInverted(true);
 			
 			frontRightSpeed = frontRightTalon.getMotorOutputPercent();
 			backRightSpeed = backRightTalon.getMotorOutputPercent();

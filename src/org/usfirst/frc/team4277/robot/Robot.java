@@ -26,7 +26,7 @@ import org.usfirst.frc.team4277.robot.subsystems.MecanumDrive;
 public class Robot extends TimedRobot {
 
 	public static OI m_oi;
-	public static final MecanumDrive driveTrain= new MecanumDrive(0, 1, 2, 3);
+	public static final MecanumDrive driveTrain= new MecanumDrive(1, 2, 3, 4);
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
