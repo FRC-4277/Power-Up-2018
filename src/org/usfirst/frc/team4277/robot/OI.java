@@ -7,19 +7,29 @@
 
 package org.usfirst.frc.team4277.robot;
 
+import org.usfirst.frc.team4277.robot.commands.Shoot;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+public class OI implements PortMap{
 	
-	public static Joystick driveStick = new Joystick(0);
+	public static Joystick driveStick = new Joystick(JOYSTICK);
 	public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+	
+	public OI() {
+		//Pilot Controls
+		JoystickButton shooterTrigger = new JoystickButton(driveStick, 1);
+		shooterTrigger.whileHeld(new Shoot());
+	}
+	
 	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
