@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4277.robot.commands.Drive;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
+import org.usfirst.frc.team4277.robot.subsystems.Climber;
+import org.usfirst.frc.team4277.robot.subsystems.Intake;
 import org.usfirst.frc.team4277.robot.subsystems.MecanumDrive;
 import org.usfirst.frc.team4277.robot.subsystems.Shooter;
 
@@ -33,10 +35,12 @@ public class Robot extends TimedRobot implements PortMap {
 	public static Preferences prefs;
 	public static OI m_oi;
 	public static final MecanumDrive driveTrain= new MecanumDrive(DRIVE_FRONT_RIGHT, DRIVE_FRONT_LEFT, DRIVE_BACK_RIGHT, DRIVE_BACK_LEFT);
-	public static Shooter shooter = new Shooter(SHOOTER_LEFT, SHOOTER_RIGHT);
+	public static final Shooter shooter = new Shooter(SHOOTER_LEFT, SHOOTER_RIGHT);
+	public static final Intake intake = new Intake();
+	public static final Climber climber = new Climber();
 
-	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command autoCommand;
+	SendableChooser<Command> sendableChooser = new SendableChooser<>();
 	
 
 
@@ -46,17 +50,18 @@ public class Robot extends TimedRobot implements PortMap {
 	 */
 	@Override
 	public void robotInit() {
-		System.out.println("Robpt int");
+		System.out.println("Robot int");
 		// Initialize
 		m_oi = new OI();
-		m_chooser.addDefault("Default Auto", new Drive());
-		// initalize preferences
-		prefs = Preferences.getInstance();
-		double shooterSpeed = Robot.prefs.getDouble("ShooterSpeed",0.25);
 		
+		// initalize preferences
+		System.out.println("Preferences created");
+		prefs = Preferences.getInstance();
+		
+		sendableChooser.addDefault("Default Auto", new Drive());
 		
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putData("Auto mode", sendableChooser);
 		SmartDashboard.putData(Scheduler.getInstance());
 
 	}
@@ -89,7 +94,7 @@ public class Robot extends TimedRobot implements PortMap {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		autoCommand = sendableChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -99,8 +104,8 @@ public class Robot extends TimedRobot implements PortMap {
 		 */
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+		if (autoCommand != null) {
+			autoCommand.start();
 		}
 	}
 
@@ -118,8 +123,8 @@ public class Robot extends TimedRobot implements PortMap {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
+		if (autoCommand != null) {
+			autoCommand.cancel();
 		}
 	}
 

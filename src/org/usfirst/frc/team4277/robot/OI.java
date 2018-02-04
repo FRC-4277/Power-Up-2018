@@ -26,7 +26,7 @@ public class OI implements PortMap{
 	
 	public OI() {
 		//Pilot Controls
-		JoystickButton shooterTrigger = new JoystickButton(driveStick, 1);
+		JoystickButton shooterTrigger = new JoystickButton(driveStick, 2);
 		shooterTrigger.whileHeld(new Shoot());
 	}
 	
