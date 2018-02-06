@@ -54,9 +54,9 @@ public class MecanumDrive extends Subsystem {
 	
 	public static void mechJoystickDrive(Joystick stick){
 		
-		double xVal = stick.getX();
+		double twist = stick.getX();
 		double yVal = stick.getY();//experiment with running this through equations
-		double twist = stick.getTwist();
+		double xVal = stick.getTwist();
 		
 		if (Math.abs(xVal) < 0.05) xVal = 0;
 		if (Math.abs(yVal) < 0.05) yVal = 0;
@@ -67,10 +67,15 @@ public class MecanumDrive extends Subsystem {
 		double speed = Math.sqrt((Math.pow(xVal, 2)) + (Math.pow(yVal, 2)));
 		double angle = Math.asin(yVal/speed);
 		
-		double fLeft = ((Math.sin(angle)*speed)-(Math.cos(angle)*speed)-twist) / adjustor;
-		double fRight = ((Math.sin(angle)*speed)+(Math.cos(angle)*speed)+twist) / adjustor;
-		double bLeft = ((Math.sin(angle)*speed)-(Math.cos(angle)*speed)+twist) / adjustor;
-		double bRight = ((Math.sin(angle)*speed)+(Math.cos(angle)*speed)-twist) / adjustor;
+		//double fLeft = ((Math.sin(angle)*speed)-(Math.cos(angle)*speed)-twist) / adjustor;
+		//double fRight = ((Math.sin(angle)*speed)+(Math.cos(angle)*speed)+twist) / adjustor;
+		//double bLeft = ((Math.sin(angle)*speed)-(Math.cos(angle)*speed)+twist) / adjustor;
+		//double bRight = ((Math.sin(angle)*speed)+(Math.cos(angle)*speed)-twist) / adjustor;
+		
+		double fLeft = (yVal-xVal-twist) / adjustor;
+		double fRight = (yVal+xVal+twist) / adjustor;
+		double bLeft = (yVal-xVal+twist) / adjustor;
+		double bRight = (yVal+xVal-twist) / adjustor;
 		
 		/*if (Math.abs(fLeft) < 0.05) fLeft = 0;
 		if (Math.abs(fRight) < 0.05) fRight = 0;
