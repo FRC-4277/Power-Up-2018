@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team4277.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -41,6 +43,7 @@ public class Robot extends TimedRobot implements PortMap {
 
 	Command autoCommand;
 	SendableChooser<Command> sendableChooser = new SendableChooser<>();
+	public UsbCamera camera;
 	
 
 
@@ -63,6 +66,8 @@ public class Robot extends TimedRobot implements PortMap {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", sendableChooser);
 		SmartDashboard.putData(Scheduler.getInstance());
+		
+		camera = CameraServer.getInstance().startAutomaticCapture(0); 
 
 	}
 

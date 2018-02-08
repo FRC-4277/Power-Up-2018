@@ -11,7 +11,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 /**
- *
  */
 public class Intake extends Subsystem implements PortMap{
 	
@@ -22,9 +21,9 @@ public class Intake extends Subsystem implements PortMap{
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	 
-	 public Intake(int leftPort, int rightPort) {
-		 intakeMotorOne = new TalonSRX(rightPort);
-		 intakeMotorTwo = new TalonSRX(leftPort);
+	 public Intake(int portOne, int portTwo) {
+		 intakeMotorOne = new TalonSRX(portOne);
+		 intakeMotorTwo = new TalonSRX(portTwo);
 		 intakeEncoderTwo = new Encoder(INTAKE_IO_CHANNEL, INTAKE_IO_POWER, false, Encoder.EncodingType.k4X);
 	 }
 	 
