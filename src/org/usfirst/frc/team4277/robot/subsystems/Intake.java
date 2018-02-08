@@ -30,6 +30,8 @@ public class Intake extends Subsystem implements PortMap{
 	 
 	 public void startIntake() {
 		 chomp();
+		 // if anyone can think of a better name that isn't repeated from somewhere else,
+		 // refactor chomp
 	 }
 	 
 	 public void stopIntake() {
