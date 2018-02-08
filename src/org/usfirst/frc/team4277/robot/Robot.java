@@ -43,7 +43,8 @@ public class Robot extends TimedRobot implements PortMap {
 
 	Command autoCommand;
 	SendableChooser<Command> sendableChooser = new SendableChooser<>();
-	public UsbCamera camera;
+	public UsbCamera cameraOne;
+	public UsbCamera cameraTwo;
 	
 
 
@@ -67,7 +68,9 @@ public class Robot extends TimedRobot implements PortMap {
 		SmartDashboard.putData("Auto mode", sendableChooser);
 		SmartDashboard.putData(Scheduler.getInstance());
 		
-		camera = CameraServer.getInstance().startAutomaticCapture(0); 
+
+		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
 
 	}
 
