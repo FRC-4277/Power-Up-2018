@@ -36,7 +36,7 @@ public class Robot extends TimedRobot implements PortMap {
 	public static OI m_oi;
 	public static final MecanumDrive driveTrain= new MecanumDrive(DRIVE_FRONT_RIGHT, DRIVE_FRONT_LEFT, DRIVE_BACK_RIGHT, DRIVE_BACK_LEFT);
 	public static final Shooter shooter = new Shooter(SHOOTER_LEFT, SHOOTER_RIGHT);
-	public static final Intake intake = new Intake();
+	public static final Intake intake = new Intake(INTAKE_LEFT, INTAKE_RIGHT);
 	public static final Climber climber = new Climber();
 
 	Command autoCommand;

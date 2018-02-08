@@ -13,8 +13,16 @@ public interface PortMap {
 	public static int SHOOTER_RIGHT = 10;
 	
 	// PWM ports 
+	public static int INTAKE_IO_POWER= 3;
+	public static int INTAKE_IO_CHANNEL= 2;
+	
 	public static int SHOOTER_IO_POWER = 1;
 	public static int SHOOTER_IO_CHANNEL = 0;
+	
+	// Intake Talon Ids
+	public static int INTAKE_LEFT = 4;
+	public static int INTAKE_RIGHT = 3;
+
 	
 	
 		// Laptop USB Ports
