@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team4277.robot;
 
+import org.usfirst.frc.team4277.robot.commands.IntakeIntake;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -26,8 +27,11 @@ public class OI implements PortMap{
 	
 	public OI() {
 		//Pilot Controls
-		JoystickButton shooterTrigger = new JoystickButton(driveStick, 2);
+		JoystickButton shooterTrigger = new JoystickButton(driveStick, 3);
 		shooterTrigger.whileHeld(new Shoot());
+		
+		JoystickButton intakeTrigger = new JoystickButton (driveStick, 4);
+		intakeTrigger.whileHeld(new IntakeIntake());
 	}
 	
 	
