@@ -8,22 +8,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 /**
  */
 public class Intake extends Subsystem implements PortMap{
 	
-	 TalonSRX intakeMotorOne;
-	 TalonSRX intakeMotorTwo;
+	VictorSPX intakeMotorOne;
+	VictorSPX intakeMotorTwo;
 	 Encoder intakeEncoderOne;
 	 Encoder intakeEncoderTwo;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	 
 	 public Intake(int portOne, int portTwo) {
-		 intakeMotorOne = new TalonSRX(portOne);
-		 intakeMotorTwo = new TalonSRX(portTwo);
+		 intakeMotorOne = new VictorSPX(portOne);
+		 intakeMotorTwo = new VictorSPX(portTwo);
 		 intakeEncoderTwo = new Encoder(INTAKE_IO_CHANNEL, INTAKE_IO_POWER, false, Encoder.EncodingType.k4X);
 	 }
 	 

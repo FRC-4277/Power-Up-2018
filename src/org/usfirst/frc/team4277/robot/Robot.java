@@ -67,6 +67,7 @@ public class Robot extends TimedRobot implements PortMap {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", sendableChooser);
 		SmartDashboard.putData(Scheduler.getInstance());
+		SmartDashboard.putData("Shooter", shooter);
 		
 
 		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);

@@ -3,8 +3,8 @@ package org.usfirst.frc.team4277.robot;
 public interface PortMap {
 	
 	// Intake Talon Ids
-	public static int INTAKE_LEFT = 4;
-	public static int INTAKE_RIGHT = 3;
+	public static int INTAKE_LEFT = 16;
+	public static int INTAKE_RIGHT = 17;
 	
 	// Drive Train Talon Ids
 	public static int DRIVE_FRONT_RIGHT = 5;
@@ -17,15 +17,15 @@ public interface PortMap {
 	public static int SHOOTER_RIGHT = 10;
 	
 	//Climber Talon Ids
-	public static int CLIMBER_LEFT = 2;
-	public static int CLIMBER_RIGHT = 1;
+	public static int CLIMBER_LEFT = 18;
+	public static int CLIMBER_RIGHT = 19;
 	
 	// PWM ports 
 	public static int INTAKE_IO_POWER= 3;
 	public static int INTAKE_IO_CHANNEL= 2;
 	
-	public static int SHOOTER_IO_POWER = 1;
-	public static int SHOOTER_IO_CHANNEL = 0;
+	public static int SHOOTER_CHANNEL_B = 0;
+	public static int SHOOTER_CHANNEL_A = 1;
 	
 	
 		// Laptop USB Ports
