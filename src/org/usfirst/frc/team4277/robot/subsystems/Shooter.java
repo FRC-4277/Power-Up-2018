@@ -1,12 +1,11 @@
 package org.usfirst.frc.team4277.robot.subsystems;
 
 import org.usfirst.frc.team4277.robot.PortMap;
+import org.usfirst.frc.team4277.robot.Preferences;
 import org.usfirst.frc.team4277.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,9 +33,8 @@ public class Shooter extends Subsystem implements PortMap {
 	}
 
 	public void startSpinning() {
-		double shooterSpeed = Robot.prefs.getDouble("ShooterSpeed", 0.25);
-
-		SmartDashboard.getNumber(getName(), shooterSpeed);
+		double shooterSpeed = Robot.prefs.getDouble(Preferences.SHOOTER_SPEED, Preferences.SHOOTER_DEFAULT_SPEED);
+		SmartDashboard.putNumber(Preferences.SHOOTER_SPEED, shooterSpeed);
 		leftMotor.set(ControlMode.PercentOutput, shooterSpeed);
 		rightMotor.set(ControlMode.PercentOutput, -shooterSpeed);
 

@@ -8,6 +8,7 @@
 package org.usfirst.frc.team4277.robot;
 
 import org.usfirst.frc.team4277.robot.commands.IntakeIntake;
+import org.usfirst.frc.team4277.robot.commands.Launch;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -22,7 +23,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI implements PortMap{
 	
 	public static Joystick driveStick = new Joystick(JOYSTICK);
-	public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
+	public static JoystickButton dSTrigger = new JoystickButton(driveStick,8);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	
 	public OI() {
@@ -32,6 +33,13 @@ public class OI implements PortMap{
 		
 		JoystickButton intakeTrigger = new JoystickButton (driveStick, 4);
 		intakeTrigger.whileHeld(new IntakeIntake());
+		
+		JoystickButton climbTrigger = new JoystickButton (driveStick, 5);
+		climbTrigger.whileHeld(new Launch()); 
+		
+		JoystickButton crateOut = new JoystickButton (driveStick, 6);
+		//crateOut.whileHeld(new ); //TODO add command
+		
 	}
 	
 	

@@ -20,6 +20,7 @@ import org.usfirst.frc.team4277.robot.commands.Drive;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.subsystems.Climber;
 import org.usfirst.frc.team4277.robot.subsystems.Intake;
+import org.usfirst.frc.team4277.robot.subsystems.Launcher;
 import org.usfirst.frc.team4277.robot.subsystems.MecanumDrive;
 import org.usfirst.frc.team4277.robot.subsystems.Shooter;
 
@@ -39,8 +40,9 @@ public class Robot extends TimedRobot implements PortMap {
 	public static final MecanumDrive driveTrain= new MecanumDrive(DRIVE_FRONT_RIGHT, DRIVE_FRONT_LEFT, DRIVE_BACK_RIGHT, DRIVE_BACK_LEFT);
 	public static final Shooter shooter = new Shooter(SHOOTER_LEFT, SHOOTER_RIGHT);
 	public static final Intake intake = new Intake(INTAKE_LEFT, INTAKE_RIGHT);
-	public static final Climber climber = new Climber();
-
+	public static final Climber climber = new Climber(CLIMBER_LEFT_WINCH, CLIMBER_RIGHT_WINCH);
+	public static final Launcher launcher = new Launcher(CLIMBER_LAUNCHER_MOTOR);
+	
 	Command autoCommand;
 	SendableChooser<Command> sendableChooser = new SendableChooser<>();
 	public UsbCamera cameraOne;
@@ -68,6 +70,7 @@ public class Robot extends TimedRobot implements PortMap {
 		SmartDashboard.putData("Auto mode", sendableChooser);
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData("Shooter", shooter);
+		//SmartDashboard.putData("Launcher", launcher);
 		
 
 		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);

@@ -1,24 +1,27 @@
 package org.usfirst.frc.team4277.robot;
 
-public interface PortMap {
+public interface PortMap {	
 	
 	// Intake Talon Ids
-	public static int INTAKE_LEFT = 16;
-	public static int INTAKE_RIGHT = 17;
+	public static int INTAKE_LEFT = 16;  //30AMP
+	public static int INTAKE_RIGHT = 15;  //30AMP
+	public static int INTAKE_TIPPER_RIGHT = 14;  //30AMP
+	public static int INTAKE_TIPPER_LEFT = 99; //TODO add controller //30AMP
 	
 	// Drive Train Talon Ids
-	public static int DRIVE_FRONT_RIGHT = 5;
-	public static int DRIVE_FRONT_LEFT = 6;
-	public static int DRIVE_BACK_RIGHT = 7;
-	public static int DRIVE_BACK_LEFT = 8;	
+	public static int DRIVE_FRONT_RIGHT = 5; //40AMP
+	public static int DRIVE_FRONT_LEFT = 6;  //40AMP
+	public static int DRIVE_BACK_RIGHT = 7;  //40AMP
+	public static int DRIVE_BACK_LEFT = 8;  //40AMP
 	
 	// Shooter Talon Ids
-	public static int SHOOTER_LEFT = 9;
-	public static int SHOOTER_RIGHT = 10;
+	public static int SHOOTER_LEFT = 9;  //40AMP
+	public static int SHOOTER_RIGHT = 11;  //40AMP
 	
 	//Climber Talon Ids
-	public static int CLIMBER_LEFT = 18;
-	public static int CLIMBER_RIGHT = 19;
+	public static int CLIMBER_LEFT_WINCH = 12;  //40AMP
+	public static int CLIMBER_RIGHT_WINCH = 13;//40AMP
+	public static int CLIMBER_LAUNCHER_MOTOR = 10;  //30AMP
 	
 	// PWM ports 
 	public static int INTAKE_IO_POWER= 3;

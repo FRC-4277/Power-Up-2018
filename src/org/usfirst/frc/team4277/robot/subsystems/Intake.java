@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4277.robot.subsystems;
 
 import org.usfirst.frc.team4277.robot.PortMap;
+import org.usfirst.frc.team4277.robot.Preferences;
 import org.usfirst.frc.team4277.robot.Robot;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -17,45 +18,32 @@ public class Intake extends Subsystem implements PortMap{
 	
 	VictorSPX intakeMotorOne;
 	VictorSPX intakeMotorTwo;
-	 Encoder intakeEncoderOne;
-	 Encoder intakeEncoderTwo;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	 
 	 public Intake(int portOne, int portTwo) {
 		 intakeMotorOne = new VictorSPX(portOne);
 		 intakeMotorTwo = new VictorSPX(portTwo);
-		 intakeEncoderTwo = new Encoder(INTAKE_IO_CHANNEL, INTAKE_IO_POWER, false, Encoder.EncodingType.k4X);
 	 }
 	 
 	 public void startIntake() {
-		 chomp();
-		 // if anyone can think of a better name that isn't repeated from somewhere else,
-		 // refactor chomp
+		 getCube();
 	 }
 	 
 	 public void stopIntake() {
 		 stop();
 	 }
 	 
-	 public void chomp() {
-			double intakeSpeed = Robot.prefs.getDouble("ShooterSpeed",0.25);
-			System.out.println("shooter speed: " + intakeSpeed);
-			//System.out.println("encoder right speed: " + rightEncoder.get());
-			System.out.println("encoder left: " + intakeEncoderTwo.getDistance());
-			
-			SmartDashboard.setDefaultNumber("Shooter speed", intakeSpeed);
-			//SmartDashboard.setDefaultNumber("Right encoder speed", rightEncoder.get());
-			SmartDashboard.setDefaultNumber("Left encoder speed", intakeEncoderTwo.get());
+	 public void getCube() {
+		 	System.out.println("Intake Chomp");
+			double intakeSpeed = Robot.prefs.getDouble(Preferences.INTAKE_SPEED,Preferences.INTAKE_DEFAULT_SPEED);
+			SmartDashboard.putNumber(Preferences.INTAKE_SPEED, intakeSpeed);
 			intakeMotorTwo.set (ControlMode.PercentOutput, intakeSpeed);
 			intakeMotorOne.set(ControlMode.PercentOutput,-intakeSpeed);
 		 }
 	 
 	 public void stop() {
+		 System.out.println("Intake Stop");
 		 intakeMotorTwo.set (ControlMode.PercentOutput,0);
 		 intakeMotorOne.set(ControlMode.PercentOutput,0);
-		// rightEncoder.reset();
-		 intakeEncoderTwo.reset();
 	 }
 
     public void initDefaultCommand() {
