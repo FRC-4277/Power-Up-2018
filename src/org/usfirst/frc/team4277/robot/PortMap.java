@@ -3,25 +3,25 @@ package org.usfirst.frc.team4277.robot;
 public interface PortMap {	
 	
 	// Intake Talon Ids
-	public static int INTAKE_LEFT = 16;  //30AMP
-	public static int INTAKE_RIGHT = 15;  //30AMP
-	public static int INTAKE_TIPPER_RIGHT = 14;  //30AMP
-	public static int INTAKE_TIPPER_LEFT = 99; //TODO add controller //30AMP
+	public static int INTAKE_LEFT = 16;  //30AMP  -- Victor
+	public static int INTAKE_RIGHT = 15;  //30AMP  -- Talon
+	public static int INTAKE_TIPPER_RIGHT = 14;  //30AMP  -- Talon
+	public static int INTAKE_TIPPER_LEFT = 99; //TODO add controller //30AMP  -- Talon
 	
 	// Drive Train Talon Ids
-	public static int DRIVE_FRONT_RIGHT = 5; //40AMP
-	public static int DRIVE_FRONT_LEFT = 6;  //40AMP
-	public static int DRIVE_BACK_RIGHT = 7;  //40AMP
-	public static int DRIVE_BACK_LEFT = 8;  //40AMP
+	public static int DRIVE_FRONT_RIGHT = 5; //40AMP  -- Talon
+	public static int DRIVE_FRONT_LEFT = 6;  //40AMP  -- Talon
+	public static int DRIVE_BACK_RIGHT = 7;  //40AMP   -- Talon
+	public static int DRIVE_BACK_LEFT = 8;  //40AMP   -- Talon
 	
 	// Shooter Talon Ids
-	public static int SHOOTER_LEFT = 9;  //40AMP
-	public static int SHOOTER_RIGHT = 11;  //40AMP
-	
+	public static int SHOOTER_LEFT = 9;  //40AMP   -- Talon
+	public static int SHOOTER_RIGHT = 11;  //40AMP   -- Talon
+	  
 	//Climber Talon Ids
-	public static int CLIMBER_LEFT_WINCH = 12;  //40AMP
-	public static int CLIMBER_RIGHT_WINCH = 13;//40AMP
-	public static int CLIMBER_LAUNCHER_MOTOR = 10;  //30AMP
+	public static int CLIMBER_LEFT_WINCH = 12;  //40AMP   -- Talon
+	public static int CLIMBER_RIGHT_WINCH = 13;//40AMP   -- Talon
+	public static int CLIMBER_LAUNCHER_MOTOR = 10;  //30AMP   -- Talon
 	
 	// PWM ports 
 	public static int INTAKE_IO_POWER= 3;

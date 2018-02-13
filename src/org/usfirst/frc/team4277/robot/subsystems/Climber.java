@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4277.robot.subsystems;
 
+import org.usfirst.frc.team4277.robot.Preferences;
 import org.usfirst.frc.team4277.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -26,18 +27,23 @@ public class Climber extends Subsystem {
 	
 	public void slowClimb() {
 		//both motors go backwards
-		double slowClimbSpeed = Robot.prefs.getDouble("Slow CLimb Speed", 0.6); //TODO add this to preferences
-
-		winchLeftMotor.set(ControlMode.PercentOutput, -slowClimbSpeed);
-		winchLeftMotor.set(ControlMode.PercentOutput, 0.0);
+		double slowClimbSpeed = Robot.prefs.getDouble(Preferences.CLIMBER_SPEED_SLOW, Preferences.CLIMBER_SLOW_SPEED); //TODO add this to preferences
+		climbAtSpeed(slowClimbSpeed);
 	}
 	
 	public void fastClimb() {
+		double fastClimbSpeed = Robot.prefs.getDouble(Preferences.CLIMBER_SPEED_FAST, Preferences.CLIMBER_DEFAULT_SPEED); //TODO add this to preferences
+		climbAtSpeed(fastClimbSpeed);
 		
 	}
 	
-	public void stopClimb() {
-		
+	public void climbAtSpeed(double speed) {
+		winchLeftMotor.set(ControlMode.PercentOutput, -speed);
+		winchLeftMotor.set(ControlMode.PercentOutput, speed);
+	}
+	
+	public void stop() {
+		climbAtSpeed(0);
 	}
 
     public void initDefaultCommand() {

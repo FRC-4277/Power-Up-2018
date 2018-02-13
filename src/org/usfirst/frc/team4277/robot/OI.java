@@ -7,13 +7,14 @@
 
 package org.usfirst.frc.team4277.robot;
 
-import org.usfirst.frc.team4277.robot.commands.IntakeIntake;
-import org.usfirst.frc.team4277.robot.commands.Launch;
+import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
+import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
+import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
+import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -32,13 +33,16 @@ public class OI implements PortMap{
 		shooterTrigger.whileHeld(new Shoot());
 		
 		JoystickButton intakeTrigger = new JoystickButton (driveStick, 4);
-		intakeTrigger.whileHeld(new IntakeIntake());
+		intakeTrigger.whileHeld(new IntakeCubeInCommand());
 		
-		JoystickButton climbTrigger = new JoystickButton (driveStick, 5);
-		climbTrigger.whileHeld(new Launch()); 
+		JoystickButton climbUpTrigger = new JoystickButton (driveStick, 5);
+		climbUpTrigger.whileHeld(new ClimberLaunchCommand()); 
 		
-		JoystickButton crateOut = new JoystickButton (driveStick, 6);
-		//crateOut.whileHeld(new ); //TODO add command
+		JoystickButton outtakeTrigger = new JoystickButton (driveStick, 6);
+		outtakeTrigger.whileHeld(new IntakeCubeOutCommand());
+		
+		JoystickButton climbDownTrigger = new JoystickButton (driveStick, 7);
+		climbDownTrigger.whileHeld(new ClimberRetractCommand());
 		
 	}
 	

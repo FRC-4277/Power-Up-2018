@@ -10,11 +10,12 @@ public class Preferences {
 	
 	public static final String CLIMBER_SPEED_SLOW = "ClimberSpeedSlow";
 	public static final String CLIMBER_SPEED_FAST = "ClimberSpeedFast";
-	public static final double CLIMBER_DEFAULT_SPEED = 0.25;
+	public static final double CLIMBER_SLOW_SPEED = 0.25;
+	public static final double CLIMBER_DEFAULT_SPEED = 0.75;
 	
-	public static final String LAUNCHER_SPEED = "LauncherSpeed";
-	public static final String LAUNCHER_WAIT = "LauncherWait";
-	public static final double LAUNCHER_DEFAULT_SPEED = 0.25;
-	public static final double LAUNCHER_WAIT_TIME = 0.75;
+	public static final String CRANE_SPEED = "CraneSpeed";
+	public static final String CRANE_WAIT = "CraneWait";
+	public static final double CRANE_DEFAULT_SPEED = 0.25;
+	public static final double CRANE_WAIT_TIME = 0.75;
 
 }
