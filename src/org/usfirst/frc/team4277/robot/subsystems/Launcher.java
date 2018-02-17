@@ -23,7 +23,6 @@ public class Launcher {
 		double launcherWait = Robot.prefs.getDouble("LaucherWait", 2);
 		SmartDashboard.putNumber(Preferences.LAUNCHER_SPEED, launcherSpeed);
 		SmartDashboard.putNumber(Preferences.LAUNCHER_WAIT, launcherWait);
-		System.out.println("Launcher Launch");
 		climberLauncherMotor.set(ControlMode.PercentOutput, launcherSpeed);
 		Timer.delay(launcherWait);
 		stop();

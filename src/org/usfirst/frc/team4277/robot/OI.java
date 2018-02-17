@@ -10,11 +10,13 @@ package org.usfirst.frc.team4277.robot;
 import org.usfirst.frc.team4277.robot.commands.IntakeIntake;
 import org.usfirst.frc.team4277.robot.commands.Launch;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
+import org.usfirst.frc.team4277.robot.commands.climbSlow;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,6 +41,9 @@ public class OI implements PortMap{
 		
 		JoystickButton crateOut = new JoystickButton (driveStick, 6);
 		//crateOut.whileHeld(new ); //TODO add command
+		
+		JoystickButton slowClimbTrigger = new JoystickButton (driveStick, 7);
+		slowClimbTrigger.whileHeld(new climbSlow());
 		
 	}
 	

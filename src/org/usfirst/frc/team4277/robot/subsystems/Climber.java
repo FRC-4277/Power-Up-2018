@@ -5,6 +5,7 @@ import org.usfirst.frc.team4277.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -27,16 +28,19 @@ public class Climber extends Subsystem {
 	public void slowClimb() {
 		//both motors go backwards
 		double slowClimbSpeed = Robot.prefs.getDouble("Slow CLimb Speed", 0.6); //TODO add this to preferences
-
 		winchLeftMotor.set(ControlMode.PercentOutput, -slowClimbSpeed);
-		winchLeftMotor.set(ControlMode.PercentOutput, 0.0);
+		winchRightMotor.set(ControlMode.PercentOutput, -slowClimbSpeed);
 	}
 	
 	public void fastClimb() {
-		
+		double fastClimbSpeed = Robot.prefs.getDouble("Fast CLimb Speed", 0.6); //TODO add this to preferences
+		winchLeftMotor.set(ControlMode.PercentOutput, -fastClimbSpeed);
+		winchRightMotor.set(ControlMode.PercentOutput, -fastClimbSpeed);
 	}
 	
 	public void stopClimb() {
+		winchLeftMotor.set(ControlMode.PercentOutput, 0.0);
+		winchRightMotor.set(ControlMode.PercentOutput, 0.0);
 		
 	}
 
