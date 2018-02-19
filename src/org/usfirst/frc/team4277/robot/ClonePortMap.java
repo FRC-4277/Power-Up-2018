@@ -1,25 +1,20 @@
 package org.usfirst.frc.team4277.robot;
 
-public interface ClonePortMap {
+public interface ClonePortMap {	
 	
 	
-		//  PWM Ports
-	// ex. public final static int JOE_DOE_SENSOR= 13;
-	
-		// CAN
-	// ex. public final static int JOE_DOE_SENSOR= 13;
+	// Drive Train Talon Ids
+	public static int DRIVE_FRONT_RIGHT = 1; //40AMP  -- Talon
+	public static int DRIVE_FRONT_LEFT = 3;  //40AMP  -- Talon
+	public static int DRIVE_BACK_RIGHT = 2;  //40AMP   -- Talon
+	public static int DRIVE_BACK_LEFT = 4;  //40AMP   -- Talon
 		
-		//  Digital
-	// ex. public final static int JOE_DOE_SENSOR= 13;
-	
-		//  Analog
-	// ex. public final static int JOE_DOE_SENSOR= 13;
 	
 		// Laptop USB Ports
 	// ex. public final static int JOE_DOE_SENSOR= 13;
-	public final int LEFT_JOYSTICK = 0;
-	public final int RIGHT_JOYSTICK = 5;
-	public final int XBOX_CONTROLLER = 3;
+	public final int JOYSTICK = 0;
+	//public final int RIGHT_JOYSTICK = 5;
+	//public final int XBOX_CONTROLLER = 3;
 	
 		// XBoxController
 	// ex. public final static int JOE_DOE_SENSOR= 13;
@@ -39,6 +34,8 @@ public interface ClonePortMap {
 	public final int XBOX_BUTTON_START = 8;
 	public final int XBOX_JOY_LEFT_BUTTON = 9;
 	public final int XBOX_JOY_RIGHT_BUTTON = 10;
+	
+	
 		
 //	The buttons on the xbox controller follow this mapping
 //

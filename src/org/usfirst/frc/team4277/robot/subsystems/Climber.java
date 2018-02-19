@@ -32,14 +32,14 @@ public class Climber extends Subsystem {
 	}
 	
 	public void fastClimb() {
-		double fastClimbSpeed = Robot.prefs.getDouble(Preferences.CLIMBER_SPEED_FAST, Preferences.CLIMBER_DEFAULT_SPEED); //TODO add this to preferences
-		climbAtSpeed(fastClimbSpeed);
+		//double fastClimbSpeed = Robot.prefs.getDouble(Preferences.CLIMBER_SPEED_FAST, Preferences.CLIMBER_DEFAULT_SPEED); //TODO add this to preferences
+		climbAtSpeed(1.0);
 		
 	}
 	
 	public void climbAtSpeed(double speed) {
 		winchLeftMotor.set(ControlMode.PercentOutput, -speed);
-		winchLeftMotor.set(ControlMode.PercentOutput, speed);
+		winchLeftMotor.set(ControlMode.PercentOutput, -speed);
 	}
 	
 	public void stop() {

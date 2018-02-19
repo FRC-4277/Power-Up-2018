@@ -10,17 +10,20 @@ package org.usfirst.frc.team4277.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team4277.robot.commands.Drive;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
+import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
 import org.usfirst.frc.team4277.robot.subsystems.Climber;
 import org.usfirst.frc.team4277.robot.subsystems.Intake;
 import org.usfirst.frc.team4277.robot.subsystems.Crane;
@@ -45,11 +48,13 @@ public class Robot extends TimedRobot implements PortMap {
 	public static final Intake intake = new Intake(INTAKE_LEFT, INTAKE_RIGHT);
 	public static final Climber climber = new Climber(CLIMBER_LEFT_WINCH, CLIMBER_RIGHT_WINCH);
 	public static final Crane launcher = new Crane(CLIMBER_LAUNCHER_MOTOR);
+	public static final Solenoid tipper = new Solenoid(20,0);
 	
 	Command autoCommand;
 	SendableChooser<Command> sendableChooser = new SendableChooser<>();
 	public UsbCamera cameraOne;
 	public UsbCamera cameraTwo;
+	public Compressor comp = new Compressor(20);
 	
 
 
@@ -62,6 +67,7 @@ public class Robot extends TimedRobot implements PortMap {
 		System.out.println("Robot int");
 		// Initialize
 		m_oi = new OI();
+	
 		
 		// initalize preferences
 		System.out.println("Preferences created");
@@ -81,6 +87,7 @@ public class Robot extends TimedRobot implements PortMap {
 		SmartDashboard.putData("Cube out command", new IntakeCubeOutCommand());
 		SmartDashboard.putData("Launch command", new ClimberLaunchCommand());
 		SmartDashboard.putData("Shoot command", new Shoot());
+		SmartDashboard.putData("Winch up Command", new WinchUpCommand());
 		
 		LiveWindow.add(new Drive());
 		LiveWindow.add(new IntakeCubeInCommand());
@@ -161,6 +168,14 @@ public class Robot extends TimedRobot implements PortMap {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		comp.setClosedLoopControl(true);
+		if (OI.getdriveStick().getRawButton(12)==true) {
+			tipper.set(true);
+		}
+		if (OI.getdriveStick().getRawButton(10)==true) {
+			tipper.set(false);
+		} 
+		//tipper.set(true);
 	}
 
 	/**

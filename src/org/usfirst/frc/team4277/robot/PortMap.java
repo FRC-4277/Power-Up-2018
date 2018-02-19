@@ -5,30 +5,44 @@ public interface PortMap {
 	// Intake Talon Ids
 	public static int INTAKE_LEFT = 16;  //30AMP  -- Victor
 	public static int INTAKE_RIGHT = 15;  //30AMP  -- Talon
-	public static int INTAKE_TIPPER_RIGHT = 14;  //30AMP  -- Talon
-	public static int INTAKE_TIPPER_LEFT = 99; //TODO add controller //30AMP  -- Talon
+	public static int INTAKE_TIPPER_RIGHT = 7;  //30AMP  -- Talon
+	public static int INTAKE_TIPPER_LEFT = 17; //30AMP  -- Victor
 	
 	// Drive Train Talon Ids
-	public static int DRIVE_FRONT_RIGHT = 5; //40AMP  -- Talon
-	public static int DRIVE_FRONT_LEFT = 6;  //40AMP  -- Talon
-	public static int DRIVE_BACK_RIGHT = 7;  //40AMP   -- Talon
-	public static int DRIVE_BACK_LEFT = 8;  //40AMP   -- Talon
+	
+	public static int DRIVE_FRONT_RIGHT = 1; //40AMP  -- Talon
+	public static int DRIVE_FRONT_LEFT = 2;  //40AMP  -- Talon
+	public static int DRIVE_BACK_RIGHT = 3;  //40AMP   -- Talon
+	public static int DRIVE_BACK_LEFT = 4;  //40AMP   -- Talon
+	
+	//public static int DRIVE_FRONT_RIGHT = 5; //40AMP  -- Talon
+	//public static int DRIVE_FRONT_LEFT = 6;  //40AMP  -- Talon
+	//public static int DRIVE_BACK_RIGHT = 11;  //40AMP   -- Talon
+	//public static int DRIVE_BACK_LEFT = 8;  //40AMP   -- Talon
 	
 	// Shooter Talon Ids
-	public static int SHOOTER_LEFT = 9;  //40AMP   -- Talon
-	public static int SHOOTER_RIGHT = 11;  //40AMP   -- Talon
-	  
+	public static int SHOOTER_LEFT = 12;  //40AMP   -- Talon
+	public static int SHOOTER_RIGHT = 13;  //40AMP   -- Talon
+
+	
+	
+	
+	
+	
+	
+	
+	
 	//Climber Talon Ids
-	public static int CLIMBER_LEFT_WINCH = 12;  //40AMP   -- Talon
-	public static int CLIMBER_RIGHT_WINCH = 13;//40AMP   -- Talon
-	public static int CLIMBER_LAUNCHER_MOTOR = 10;  //30AMP   -- Talon
+	public static int CLIMBER_LEFT_WINCH = 9;  //40AMP   -- Talon
+	public static int CLIMBER_RIGHT_WINCH = 10; //40AMP   -- Talon
+	public static int CLIMBER_LAUNCHER_MOTOR = 14;  //30AMP   -- Talon
 	
 	// PWM ports 
-	public static int INTAKE_IO_POWER= 3;
-	public static int INTAKE_IO_CHANNEL= 2;
+	public static int INTAKE_IO_POWER= 3; //Encoder
+	public static int INTAKE_IO_CHANNEL= 2; //Encoder
 	
-	public static int SHOOTER_CHANNEL_B = 0;
-	public static int SHOOTER_CHANNEL_A = 1;
+	public static int SHOOTER_CHANNEL_B = 0; //Encoder
+	public static int SHOOTER_CHANNEL_A = 1; //Encoder
 	
 	
 		// Laptop USB Ports

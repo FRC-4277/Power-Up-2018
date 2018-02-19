@@ -17,10 +17,15 @@ public class Intake extends Subsystem implements PortMap {
 
 	VictorSPX intakeMotorLeft;
 	TalonSRX intakeMotorRight;
+	int channel = 0;
+	int moduleNum = 0;
+	
 
 	public Intake(int leftMotorPort, int rightMotorPort) {
 		intakeMotorLeft = new VictorSPX(leftMotorPort);
 		intakeMotorRight = new TalonSRX(rightMotorPort);
+		
+		//Solenoid piston = new Solenoid(moduleNum, channel);
 	}
 
 	public void pullCubeIn() {
@@ -45,6 +50,10 @@ public class Intake extends Subsystem implements PortMap {
 		SmartDashboard.putNumber(Preferences.INTAKE_SPEED, speed);
 		intakeMotorRight.set(ControlMode.PercentOutput, speed);
 		intakeMotorLeft.set(ControlMode.PercentOutput, -speed);
+	}
+	
+	public void lowerIntake(boolean state) {
+		//piston.set(state);
 	}
 
 	public void initDefaultCommand() {

@@ -7,12 +7,15 @@
 
 package org.usfirst.frc.team4277.robot.subsystems;
 
+import org.usfirst.frc.team4277.robot.Preferences;
+import org.usfirst.frc.team4277.robot.Robot;
 import org.usfirst.frc.team4277.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -54,8 +57,12 @@ public class MecanumDrive extends Subsystem {
 	
 	public static void mechJoystickDrive(Joystick stick){
 		
-		double twist = stick.getX();
-		double yVal = stick.getY();//experiment with running this through equations
+		double sensitivity = Robot.prefs.getDouble("Sensitivity", 5);
+		SmartDashboard.putNumber(Preferences.SENSITIVITY, sensitivity);
+		
+		double twist = Math.pow(stick.getX(), sensitivity);
+		
+		double yVal = Math.pow(stick.getY(), sensitivity);//experiment with running this through equations
 		double xVal = stick.getTwist();
 		
 		if (Math.abs(xVal) < 0.05) xVal = 0;
@@ -64,8 +71,8 @@ public class MecanumDrive extends Subsystem {
 		
 		double adjustor = ((2*Math.sqrt(2))/2) + Math.abs(twist);
 		
-		double speed = Math.sqrt((Math.pow(xVal, 2)) + (Math.pow(yVal, 2)));
-		double angle = Math.asin(yVal/speed);
+		//double speed = Math.sqrt((Math.pow(xVal, 2)) + (Math.pow(yVal, 2)));
+		//double angle = Math.asin(yVal/speed);
 		
 		//double fLeft = ((Math.sin(angle)*speed)-(Math.cos(angle)*speed)-twist) / adjustor;
 		//double fRight = ((Math.sin(angle)*speed)+(Math.cos(angle)*speed)+twist) / adjustor;

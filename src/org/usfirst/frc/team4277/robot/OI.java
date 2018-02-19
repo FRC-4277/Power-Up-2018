@@ -12,6 +12,7 @@ import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
+import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -26,23 +27,26 @@ public class OI implements PortMap{
 	public static Joystick driveStick = new Joystick(JOYSTICK);
 	public static JoystickButton dSTrigger = new JoystickButton(driveStick,8);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-	
+
 	public OI() {
 		//Pilot Controls
-		JoystickButton shooterTrigger = new JoystickButton(driveStick, 3);
+		JoystickButton shooterTrigger = new JoystickButton(driveStick, 7);
 		shooterTrigger.whileHeld(new Shoot());
 		
-		JoystickButton intakeTrigger = new JoystickButton (driveStick, 4);
+		JoystickButton intakeTrigger = new JoystickButton (driveStick, 6);
 		intakeTrigger.whileHeld(new IntakeCubeInCommand());
 		
 		JoystickButton climbUpTrigger = new JoystickButton (driveStick, 5);
 		climbUpTrigger.whileHeld(new ClimberLaunchCommand()); 
 		
-		JoystickButton outtakeTrigger = new JoystickButton (driveStick, 6);
+		JoystickButton outtakeTrigger = new JoystickButton (driveStick, 4);
 		outtakeTrigger.whileHeld(new IntakeCubeOutCommand());
 		
-		JoystickButton climbDownTrigger = new JoystickButton (driveStick, 7);
+		JoystickButton climbDownTrigger = new JoystickButton (driveStick, 3);
 		climbDownTrigger.whileHeld(new ClimberRetractCommand());
+		
+		JoystickButton winchUpTrigger = new JoystickButton(driveStick, 9);
+		winchUpTrigger.whileHeld(new WinchUpCommand());
 		
 	}
 	

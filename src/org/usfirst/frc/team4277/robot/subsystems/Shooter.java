@@ -35,8 +35,8 @@ public class Shooter extends Subsystem implements PortMap {
 	public void startSpinning() {
 		double shooterSpeed = Robot.prefs.getDouble(Preferences.SHOOTER_SPEED, Preferences.SHOOTER_DEFAULT_SPEED);
 		SmartDashboard.putNumber(Preferences.SHOOTER_SPEED, shooterSpeed);
-		leftMotor.set(ControlMode.PercentOutput, shooterSpeed);
-		rightMotor.set(ControlMode.PercentOutput, -shooterSpeed);
+		leftMotor.set(ControlMode.PercentOutput, -shooterSpeed);
+		rightMotor.set(ControlMode.PercentOutput, shooterSpeed);
 
 		SmartDashboard.putNumber("Shooter:  Left speed", leftMotor.getMotorOutputPercent());
 		//SmartDashboard.putNumber("Shooter:  Right speed", rightMotor.getMotorOutputPercent());

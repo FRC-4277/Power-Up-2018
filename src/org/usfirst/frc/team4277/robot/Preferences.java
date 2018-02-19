@@ -17,5 +17,7 @@ public class Preferences {
 	public static final String CRANE_WAIT = "CraneWait";
 	public static final double CRANE_DEFAULT_SPEED = 0.25;
 	public static final double CRANE_WAIT_TIME = 0.75;
+	
+	public static final String SENSITIVITY = "Sensitivity";
 
 }

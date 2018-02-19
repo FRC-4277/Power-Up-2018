@@ -19,7 +19,7 @@ public class Crane extends Subsystem {
 	}
 	
 	public void launch () {
-		double craneSpeed = Robot.prefs.getDouble("CraneSpeed", 0.6);
+		double craneSpeed = Robot.prefs.getDouble("CraneUpSpeed", 0.6);
 		double craneWait = Robot.prefs.getDouble("CraneWait", 2);
 		SmartDashboard.putNumber(Preferences.CRANE_SPEED, craneSpeed);
 		SmartDashboard.putNumber(Preferences.CRANE_WAIT, craneWait);
@@ -30,7 +30,7 @@ public class Crane extends Subsystem {
 	}
 
 	public void Retract () { //temp name for test
-		double craneSpeed = Robot.prefs.getDouble("CraneSpeed", -0.6);
+		double craneSpeed = Robot.prefs.getDouble("CraneRetractSpeed", -0.25);
 		double craneWait = Robot.prefs.getDouble("CraneWait", 2);
 		SmartDashboard.putNumber(Preferences.CRANE_SPEED, craneSpeed);
 		SmartDashboard.putNumber(Preferences.CRANE_WAIT, craneWait);
