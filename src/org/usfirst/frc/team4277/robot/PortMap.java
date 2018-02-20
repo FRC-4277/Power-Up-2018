@@ -5,8 +5,6 @@ public interface PortMap {
 	// Intake Talon Ids
 	public static int INTAKE_LEFT = 16;  //30AMP  -- Victor
 	public static int INTAKE_RIGHT = 15;  //30AMP  -- Talon
-	public static int INTAKE_TIPPER_RIGHT = 7;  //30AMP  -- Talon
-	public static int INTAKE_TIPPER_LEFT = 17; //30AMP  -- Victor
 	
 	// Drive Train Talon Ids
 	
@@ -15,22 +13,14 @@ public interface PortMap {
 	public static int DRIVE_BACK_RIGHT = 3;  //40AMP   -- Talon
 	public static int DRIVE_BACK_LEFT = 4;  //40AMP   -- Talon
 	
-	//public static int DRIVE_FRONT_RIGHT = 5; //40AMP  -- Talon
-	//public static int DRIVE_FRONT_LEFT = 6;  //40AMP  -- Talon
-	//public static int DRIVE_BACK_RIGHT = 11;  //40AMP   -- Talon
-	//public static int DRIVE_BACK_LEFT = 8;  //40AMP   -- Talon
-	
 	// Shooter Talon Ids
 	public static int SHOOTER_LEFT = 12;  //40AMP   -- Talon
 	public static int SHOOTER_RIGHT = 13;  //40AMP   -- Talon
 
 	
-	
-	
-	
-	
-	
-	
+	//  Pnuematic Control
+	public static int PNUEMATIC_CONTROL_MODULE_CAN_ID = 20;
+	public static int PNUEMATIC_CONTROL_MODULE_TIP_CHANNEL_ID = 0;
 	
 	//Climber Talon Ids
 	public static int CLIMBER_LEFT_WINCH = 9;  //40AMP   -- Talon

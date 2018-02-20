@@ -13,7 +13,8 @@ import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
-
+import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
+import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -48,6 +49,11 @@ public class OI implements PortMap{
 		JoystickButton winchUpTrigger = new JoystickButton(driveStick, 9);
 		winchUpTrigger.whileHeld(new WinchUpCommand());
 		
+		JoystickButton tipperEngageTrigger = new JoystickButton(driveStick, 12);
+		tipperEngageTrigger.whenPressed(new TipperUpCommand());
+		
+		JoystickButton tipperDisengageTrigger = new JoystickButton(driveStick, 10);
+		tipperDisengageTrigger.whenPressed(new TipperDownCommand());
 	}
 	
 	

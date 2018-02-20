@@ -10,7 +10,6 @@ package org.usfirst.frc.team4277.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Preferences;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -23,12 +22,15 @@ import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
+import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
+import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
 import org.usfirst.frc.team4277.robot.subsystems.Climber;
 import org.usfirst.frc.team4277.robot.subsystems.Intake;
 import org.usfirst.frc.team4277.robot.subsystems.Crane;
 import org.usfirst.frc.team4277.robot.subsystems.MecanumDrive;
 import org.usfirst.frc.team4277.robot.subsystems.Shooter;
+import org.usfirst.frc.team4277.robot.subsystems.Tipper;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -48,13 +50,13 @@ public class Robot extends TimedRobot implements PortMap {
 	public static final Intake intake = new Intake(INTAKE_LEFT, INTAKE_RIGHT);
 	public static final Climber climber = new Climber(CLIMBER_LEFT_WINCH, CLIMBER_RIGHT_WINCH);
 	public static final Crane launcher = new Crane(CLIMBER_LAUNCHER_MOTOR);
-	public static final Solenoid tipper = new Solenoid(20,0);
+	public static final Tipper tipper = new Tipper(PNUEMATIC_CONTROL_MODULE_CAN_ID,0);
 	
 	Command autoCommand;
 	SendableChooser<Command> sendableChooser = new SendableChooser<>();
 	public UsbCamera cameraOne;
 	public UsbCamera cameraTwo;
-	public Compressor comp = new Compressor(20);
+	public Compressor comp = new Compressor(PNUEMATIC_CONTROL_MODULE_CAN_ID);
 	
 
 
@@ -88,12 +90,19 @@ public class Robot extends TimedRobot implements PortMap {
 		SmartDashboard.putData("Launch command", new ClimberLaunchCommand());
 		SmartDashboard.putData("Shoot command", new Shoot());
 		SmartDashboard.putData("Winch up Command", new WinchUpCommand());
+		SmartDashboard.putData("Tip up command", new TipperUpCommand());
+		SmartDashboard.putData("Tip down command", new TipperDownCommand());
+
 		
 		LiveWindow.add(new Drive());
 		LiveWindow.add(new IntakeCubeInCommand());
 		LiveWindow.add(new IntakeCubeOutCommand());
 		LiveWindow.add(new ClimberLaunchCommand());
 		LiveWindow.add(new Shoot());
+		LiveWindow.add(new TipperDownCommand());
+		LiveWindow.add(new TipperUpCommand());
+		
+		
 
 		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
 		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
@@ -169,12 +178,6 @@ public class Robot extends TimedRobot implements PortMap {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		comp.setClosedLoopControl(true);
-		if (OI.getdriveStick().getRawButton(12)==true) {
-			tipper.set(true);
-		}
-		if (OI.getdriveStick().getRawButton(10)==true) {
-			tipper.set(false);
-		} 
 		//tipper.set(true);
 	}
 
