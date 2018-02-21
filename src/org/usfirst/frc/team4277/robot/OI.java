@@ -14,6 +14,7 @@ import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
 import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
+import org.usfirst.frc.team4277.robot.commands.WinchDownCommand;
 import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -31,7 +32,7 @@ public class OI implements PortMap{
 
 	public OI() {
 		//Pilot Controls
-		JoystickButton shooterTrigger = new JoystickButton(driveStick, 7);
+		JoystickButton shooterTrigger = new JoystickButton(driveStick, 1);
 		shooterTrigger.whileHeld(new Shoot());
 		
 		JoystickButton intakeTrigger = new JoystickButton (driveStick, 6);
@@ -49,11 +50,14 @@ public class OI implements PortMap{
 		JoystickButton winchUpTrigger = new JoystickButton(driveStick, 9);
 		winchUpTrigger.whileHeld(new WinchUpCommand());
 		
-		JoystickButton tipperEngageTrigger = new JoystickButton(driveStick, 12);
+		JoystickButton tipperEngageTrigger = new JoystickButton(driveStick, 10);
 		tipperEngageTrigger.whenPressed(new TipperUpCommand());
 		
-		JoystickButton tipperDisengageTrigger = new JoystickButton(driveStick, 10);
+		JoystickButton tipperDisengageTrigger = new JoystickButton(driveStick, 12);
 		tipperDisengageTrigger.whenPressed(new TipperDownCommand());
+		
+		JoystickButton winchDownTrigger = new JoystickButton(driveStick, 11);
+		winchDownTrigger.whileHeld(new WinchDownCommand());
 	}
 	
 	

@@ -33,8 +33,11 @@ public class Climber extends Subsystem {
 	
 	public void fastClimb() {
 		//double fastClimbSpeed = Robot.prefs.getDouble(Preferences.CLIMBER_SPEED_FAST, Preferences.CLIMBER_DEFAULT_SPEED); //TODO add this to preferences
-		climbAtSpeed(1.0);
-		
+		climbAtSpeed(1);
+	}		
+	public void reversefastClimb() {
+		//double fastClimbSpeed = Robot.prefs.getDouble(Preferences.CLIMBER_SPEED_FAST, Preferences.CLIMBER_DEFAULT_SPEED); //TODO add this to preferences
+		climbAtSpeed(-1);
 	}
 	
 	public void climbAtSpeed(double speed) {

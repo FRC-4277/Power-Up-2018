@@ -126,20 +126,24 @@ public class MecanumDrive extends Subsystem {
 		backRightTalon.set(ControlMode.PercentOutput, bRight);
 	}
 	
-	public void mechDirectionalDrive (Double angle, Double speed, long durration) {
+	public void stop() {
+		mechDirectionalDrive (0.0, 0.0, 10);
+	}
+	
+	public void mechDirectionalDrive (double angle, double speed, double durration) {
 		//Sets motor timeouts
 		/*FrontRight.setExpiration(durration);
 		FrontLeft.setExpiration(durration);
 		BackRight.setExpiration(durration);
 		BackLeft.setExpiration(durration);*/
 		
-		long millisecondsToRun = durration; // Timeout
-		long initTime = RobotController.getFPGATime();
+		double millisecondsToRun = durration; // Timeout
+		double initTime = RobotController.getFPGATime();
 		
 		//Conversion from polar to coordinate system
-		Double rad = Math.toRadians(angle);
-		Double xVal = Math.cos(rad) * speed;
-		Double yVal = Math.sin(rad) * speed;
+		double rad = Math.toRadians(angle);
+		double xVal = Math.cos(rad) * speed;
+		double yVal = Math.sin(rad) * speed;
 		
 		//Drives the motors
 		while (RobotController.getFPGATime() - initTime <= millisecondsToRun){

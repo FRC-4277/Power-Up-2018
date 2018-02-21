@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team4277.robot.commands.Drive;
+import org.usfirst.frc.team4277.robot.commands.DriveTimed;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
@@ -48,7 +49,7 @@ public class Robot extends TimedRobot implements PortMap {
 	public static final MecanumDrive driveTrain= new MecanumDrive(DRIVE_FRONT_RIGHT, DRIVE_FRONT_LEFT, DRIVE_BACK_RIGHT, DRIVE_BACK_LEFT);
 	public static final Shooter shooter = new Shooter(SHOOTER_LEFT, SHOOTER_RIGHT);
 	public static final Intake intake = new Intake(INTAKE_LEFT, INTAKE_RIGHT);
-	public static final Climber climber = new Climber(CLIMBER_LEFT_WINCH, CLIMBER_RIGHT_WINCH);
+	public static final Climber climber = new Climber(CLIMBER_BACK_WINCH, CLIMBER_FRONT_WINCH);
 	public static final Crane launcher = new Crane(CLIMBER_LAUNCHER_MOTOR);
 	public static final Tipper tipper = new Tipper(PNUEMATIC_CONTROL_MODULE_CAN_ID,0);
 	
@@ -78,8 +79,10 @@ public class Robot extends TimedRobot implements PortMap {
 		// Add Autonomous Chooser
 		
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		sendableChooser.addDefault("Default Auto", new Drive());
+
 		SmartDashboard.putData("Auto mode", sendableChooser);
+		sendableChooser.addDefault("Drive Foreward Auto", new DriveTimed());
+		
 
 		
 		// Add commands

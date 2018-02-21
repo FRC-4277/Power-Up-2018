@@ -8,10 +8,10 @@ public interface PortMap {
 	
 	// Drive Train Talon Ids
 	
-	public static int DRIVE_FRONT_RIGHT = 1; //40AMP  -- Talon
-	public static int DRIVE_FRONT_LEFT = 2;  //40AMP  -- Talon
-	public static int DRIVE_BACK_RIGHT = 3;  //40AMP   -- Talon
-	public static int DRIVE_BACK_LEFT = 4;  //40AMP   -- Talon
+	public static int DRIVE_FRONT_RIGHT = 5; //40AMP  -- Talon
+	public static int DRIVE_FRONT_LEFT = 6;  //40AMP  -- Talon
+	public static int DRIVE_BACK_RIGHT = 8;  //40AMP   -- Talon
+	public static int DRIVE_BACK_LEFT = 9;  //40AMP   -- Talon
 	
 	// Shooter Talon Ids
 	public static int SHOOTER_LEFT = 12;  //40AMP   -- Talon
@@ -23,8 +23,8 @@ public interface PortMap {
 	public static int PNUEMATIC_CONTROL_MODULE_TIP_CHANNEL_ID = 0;
 	
 	//Climber Talon Ids
-	public static int CLIMBER_LEFT_WINCH = 9;  //40AMP   -- Talon
-	public static int CLIMBER_RIGHT_WINCH = 10; //40AMP   -- Talon
+	public static int CLIMBER_BACK_WINCH = 10;  //40AMP   -- Talon
+	public static int CLIMBER_FRONT_WINCH = 11; //40AMP   -- Talon
 	public static int CLIMBER_LAUNCHER_MOTOR = 14;  //30AMP   -- Talon
 	
 	// PWM ports 

@@ -1,9 +1,8 @@
 package org.usfirst.frc.team4277.robot.subsystems;
 
 import org.usfirst.frc.team4277.robot.PortMap;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
