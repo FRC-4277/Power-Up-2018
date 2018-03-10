@@ -6,6 +6,7 @@ import org.usfirst.frc.team4277.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -13,12 +14,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
 	
-	public TalonSRX winchLeftMotor;
-	public TalonSRX winchRightMotor;
+	public Victor winchLeftMotor;
+	public Victor winchRightMotor;
 	
 	public Climber (int leftWinch, int rightWinch) {
-		winchLeftMotor = new TalonSRX(leftWinch);
-		winchRightMotor = new TalonSRX(rightWinch);
+		winchLeftMotor = new Victor(leftWinch);
+		winchRightMotor = new Victor(rightWinch);
 	}	
 	
 
@@ -41,8 +42,10 @@ public class Climber extends Subsystem {
 	}
 	
 	public void climbAtSpeed(double speed) {
-		winchLeftMotor.set(ControlMode.PercentOutput, -speed);
-		winchLeftMotor.set(ControlMode.PercentOutput, -speed);
+		//winchLeftMotor.set(ControlMode.PercentOutput, -speed);
+		//winchLeftMotor.set(ControlMode.PercentOutput, -speed);
+		winchLeftMotor.set(-speed);
+		winchLeftMotor.set(-speed);
 	}
 	
 	public void stop() {

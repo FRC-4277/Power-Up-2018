@@ -8,6 +8,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,15 +17,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Intake extends Subsystem implements PortMap {
 
-	VictorSPX intakeMotorLeft;
-	TalonSRX intakeMotorRight;
+	Victor intakeMotorLeft;
+	Victor intakeMotorRight;
 	int channel = 0;
 	int moduleNum = 0;
 	
 
 	public Intake(int leftMotorPort, int rightMotorPort) {
-		intakeMotorLeft = new VictorSPX(leftMotorPort);
-		intakeMotorRight = new TalonSRX(rightMotorPort);
+		intakeMotorLeft = new Victor(leftMotorPort);
+		intakeMotorRight = new Victor(rightMotorPort);
 		
 		//Solenoid piston = new Solenoid(moduleNum, channel);
 	}
@@ -42,14 +44,18 @@ public class Intake extends Subsystem implements PortMap {
 
 	public void stop() {
 		System.out.println("Intake Stop");
-		intakeMotorRight.set(ControlMode.PercentOutput, 0);
-		intakeMotorLeft.set(ControlMode.PercentOutput, 0);
+		//intakeMotorRight.set(ControlMode.PercentOutput, 0);
+		//intakeMotorLeft.set(ControlMode.PercentOutput, 0);
+		intakeMotorRight.set(0);
+		intakeMotorLeft.set(0);
 	}
 	
 	public void runIntake(double speed) {
 		SmartDashboard.putNumber(Preferences.INTAKE_SPEED, speed);
-		intakeMotorRight.set(ControlMode.PercentOutput, speed);
-		intakeMotorLeft.set(ControlMode.PercentOutput, -speed);
+		//intakeMotorRight.set(ControlMode.PercentOutput, speed);
+		//intakeMotorLeft.set(ControlMode.PercentOutput, -speed);
+		intakeMotorRight.set(speed);
+		intakeMotorLeft.set(-speed);
 	}
 	
 	public void lowerIntake(boolean state) {

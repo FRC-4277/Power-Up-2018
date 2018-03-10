@@ -41,7 +41,7 @@ import org.usfirst.frc.team4277.robot.subsystems.Tipper;
  * project.
  * This is a test
  */
-public class Robot extends TimedRobot implements PortMap {
+public class Robot extends TimedRobot implements ClonePortMap {
 	
 	
 	public static Preferences prefs;
@@ -57,7 +57,7 @@ public class Robot extends TimedRobot implements PortMap {
 	SendableChooser<Command> sendableChooser = new SendableChooser<>();
 	public UsbCamera cameraOne;
 	public UsbCamera cameraTwo;
-	public Compressor comp = new Compressor(PNUEMATIC_CONTROL_MODULE_CAN_ID);
+	//public Compressor comp = new Compressor(PNUEMATIC_CONTROL_MODULE_CAN_ID);
 	
 
 
@@ -180,7 +180,7 @@ public class Robot extends TimedRobot implements PortMap {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		comp.setClosedLoopControl(true);
+		//comp.setClosedLoopControl(true);
 		//tipper.set(true);
 	}
 
