@@ -18,7 +18,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team4277.robot.commands.Drive;
-import org.usfirst.frc.team4277.robot.commands.DriveTimed;
+import org.usfirst.frc.team4277.robot.commands.AutoDrive;
+import org.usfirst.frc.team4277.robot.commands.AutoDriveSide;
+import org.usfirst.frc.team4277.robot.commands.AutoTest;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
@@ -52,7 +54,9 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	public static final Climber climber = new Climber(CLIMBER_BACK_WINCH, CLIMBER_FRONT_WINCH);
 	public static final Crane launcher = new Crane(CLIMBER_LAUNCHER_MOTOR);
 	public static final Tipper tipper = new Tipper(PNUEMATIC_CONTROL_MODULE_CAN_ID,0);
-	
+	public static final AutoDrive AutoDrive = new AutoDrive();
+	public static final  AutoDriveSide AutoDriveSide = new AutoDriveSide();
+	public static final AutoTest AutoTest = new AutoTest();
 	Command autoCommand;
 	SendableChooser<Command> sendableChooser = new SendableChooser<>();
 	public UsbCamera cameraOne;
@@ -81,7 +85,7 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
 		SmartDashboard.putData("Auto mode", sendableChooser);
-		sendableChooser.addDefault("Drive Foreward Auto", new DriveTimed());
+		sendableChooser.addDefault("Drive Foreward Auto", new AutoDrive());
 		
 
 		
@@ -140,7 +144,9 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	 */
 	@Override
 	public void autonomousInit() {
-		autoCommand = sendableChooser.getSelected();
+		OI.gyro.reset();
+		AutoTest.start();
+		//autoCommand = sendableChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -150,9 +156,9 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autoCommand != null) {
-			autoCommand.start();
-		}
+		//if (autoCommand != null) {
+		//	autoCommand.start();
+		//}
 	}
 
 	/**
@@ -161,6 +167,8 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		AutoTest.start();
+		//System.out.println("hi1");
 	}
 
 	@Override

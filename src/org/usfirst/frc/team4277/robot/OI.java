@@ -18,6 +18,7 @@ import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,7 +28,7 @@ public class OI implements ClonePortMap{
 	
 	public static Joystick driveStick = new Joystick(JOYSTICK);
 	public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
-	public static Joystick XboxController;
+	public static Joystick xboxController = new Joystick(2);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
 	public OI() {
@@ -60,16 +61,16 @@ public class OI implements ClonePortMap{
 		winchDownButton.whileHeld(new WinchDownCommand());
 		
 		//XboxButtonControllers
-		JoystickButton intakeXboxButton = new JoystickButton (XboxController, XBOX_BUTTON_X);
+		JoystickButton intakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_X);
 		intakeXboxButton.whileHeld(new IntakeCubeInCommand());
 		
-		JoystickButton outtakeXboxButton = new JoystickButton (XboxController, XBOX_BUTTON_B);
+		JoystickButton outtakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_B);
 		outtakeXboxButton.whileHeld(new IntakeCubeOutCommand());
 		
-		JoystickButton climbUpXboxButton = new JoystickButton (XboxController, XBOX_BUTTON_Y);
+		JoystickButton climbUpXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_Y);
 		climbUpXboxButton.whileHeld(new ClimberLaunchCommand());
 		
-		JoystickButton climbDownXboxButton = new JoystickButton (XboxController, XBOX_BUTTON_A);
+		JoystickButton climbDownXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_A);
 		climbDownXboxButton.whileHeld(new ClimberRetractCommand());
 	}
 	
@@ -109,5 +110,8 @@ public class OI implements ClonePortMap{
 	}
 	public static double getGyro() {
 		return gyro.getAngle();
+	}
+	public static Gyro getGyroA() {
+		return gyro;
 	}
 }

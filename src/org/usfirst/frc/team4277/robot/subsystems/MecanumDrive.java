@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -128,30 +129,58 @@ public class MecanumDrive extends Subsystem {
 	}
 	
 	public void stop() {
-		mechDirectionalDrive (0.0, 0.0, 10);
+		mechDirectionalDrive(0,0,1);
 	}
 	
+	public void autoStop() {
+		frontLeftTalon.set( ControlMode.PercentOutput, 0);
+		frontRightTalon.set( ControlMode.PercentOutput, 0);
+		backLeftTalon.set(ControlMode.PercentOutput, 0);
+		backRightTalon.set(ControlMode.PercentOutput, 0);
+
+	}
 	public void mechDirectionalDrive (double angle, double speed, double durration) {
-		//Sets motor timeouts
-		/*FrontRight.setExpiration(durration);
-		FrontLeft.setExpiration(durration);
-		BackRight.setExpiration(durration);
-		BackLeft.setExpiration(durration);*/
 		
-		double millisecondsToRun = durration; // Timeout
+		
+		double millisecondsToRun = durration*1000000; // Timeout
 		double initTime = RobotController.getFPGATime();
 		
 		//Conversion from polar to coordinate system
 		double rad = Math.toRadians(angle);
 		double xVal = Math.cos(rad) * speed;
 		double yVal = Math.sin(rad) * speed;
-		
 		//Drives the motors
 		while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
 			frontRightTalon.set(ControlMode.PercentOutput,(yVal - xVal)/1.45);
 			backLeftTalon.set(ControlMode.PercentOutput, (yVal - xVal)/1.45);
 			frontLeftTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
 			backRightTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
+			//System.out.println("init"+initTime);
+			//System.out.println(RobotController.getFPGATime());
+		}
+		
+	}
+	public void mechDirectionalDriveGyro (double angle, double speed, double durration,Gyro gyro) {
+		
+		//gyro.reset();
+		double millisecondsToRun = durration*1000000; // Timeout
+		double initTime = RobotController.getFPGATime();
+		
+		//Conversion from polar to coordinate system
+		
+		//Drives the motors
+		while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
+			System.out.println(gyro.getAngle());
+			double rad = Math.toRadians(angle+gyro.getAngle());
+			double xVal = Math.cos(rad) * speed;
+			double yVal = Math.sin(rad) * speed;
+			
+			frontRightTalon.set(ControlMode.PercentOutput,(yVal - xVal)/1.45);
+			backLeftTalon.set(ControlMode.PercentOutput, (yVal - xVal)/1.45);
+			frontLeftTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
+			backRightTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
+			//System.out.println("init"+initTime);
+			//System.out.println(RobotController.getFPGATime());
 		}
 		
 	}
