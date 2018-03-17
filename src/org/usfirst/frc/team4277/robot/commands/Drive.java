@@ -18,7 +18,7 @@ import org.usfirst.frc.team4277.robot.subsystems.*;
  * An example command.  You can replace me with your own command.
  */
 public class Drive extends Command {
-//	private boolean gyroDrive;
+	private boolean gyroDrive;
 
     public Drive() {
         // Use requires() here to declare subsystem dependencies
@@ -29,12 +29,12 @@ public class Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//gyroDrive = false;
+    	gyroDrive = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	/*if(OI.getdSTrigger() == true && gyroDrive == false) gyroDrive = true;
+    	if(OI.getdSTrigger() == true && gyroDrive == false) gyroDrive = true;
     	else if(OI.getdSTrigger() == true && gyroDrive == true) gyroDrive = false;
     	
     	if(gyroDrive == false) {
@@ -42,8 +42,8 @@ public class Drive extends Command {
     	}
     	if(gyroDrive == true) {
     		MecanumDrive.mechJoystickGyroDrive(OI.getdriveStick(), OI.getGyro());
-    	}*/
-    	MecanumDrive.mechJoystickDrive(OI.getdriveStick());
+    	}
+    	//Robot.driveTrain.mechJoystickDrive(OI.getdriveStick());
     }
 
     // Make this return true when this Command no longer needs to run execute()

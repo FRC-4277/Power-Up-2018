@@ -57,12 +57,12 @@ public class MecanumDrive extends Subsystem {
 	
 	public static void mechJoystickDrive(Joystick stick){
 		
-		double sensitivity = Robot.prefs.getDouble("Sensitivity", 5);
-		SmartDashboard.putNumber(Preferences.SENSITIVITY, sensitivity);
+		//double sensitivity = Robot.prefs.getDouble("Sensitivity", 5);
+		//SmartDashboard.putNumber(Preferences.SENSITIVITY, sensitivity);
 		
-		double twist = Math.pow(stick.getX(), sensitivity);
+		double twist = Math.pow(stick.getX(), 5);
 		
-		double yVal = Math.pow(stick.getY(), sensitivity);//experiment with running this through equations
+		double yVal = Math.pow(stick.getY(), 3);//experiment with running this through equations
 		double xVal = stick.getTwist();
 		
 		if (Math.abs(xVal) < 0.05) xVal = 0;
@@ -96,9 +96,9 @@ public class MecanumDrive extends Subsystem {
 	}
 	
 	public static void mechJoystickGyroDrive(Joystick stick, Double gyro) {//hopefully we can get a navX gyro for precise data(IM)
-		double xVal = stick.getX();
+		double xVal = stick.getTwist();
 		double yVal = stick.getY();//experiment with running this through equations
-		double twist = stick.getTwist();
+		double twist = stick.getX();
 		double orientation = Math.toRadians(gyro);
 		
 		if (Math.abs(xVal) < 0.05) xVal = 0;
@@ -108,7 +108,7 @@ public class MecanumDrive extends Subsystem {
 		double adjustor = ((2*Math.sqrt(2))/2) + Math.abs(twist);
 		
 		double speed = Math.sqrt((Math.pow(xVal, 2)) + (Math.pow(yVal, 2)));
-		double angle = Math.asin(yVal/speed) + orientation;
+		double angle = Math.atan2(yVal, xVal) + orientation;
 		
 		double fLeft = ((Math.sin(angle)*speed)-(Math.cos(angle)*speed)-twist) / adjustor;
 		double fRight = ((Math.sin(angle)*speed)+(Math.cos(angle)*speed)+twist) / adjustor;
@@ -124,6 +124,7 @@ public class MecanumDrive extends Subsystem {
 		frontRightTalon.set( ControlMode.PercentOutput, fRight);
 		backLeftTalon.set(ControlMode.PercentOutput, bLeft);
 		backRightTalon.set(ControlMode.PercentOutput, bRight);
+		System.out.println(gyro);
 	}
 	
 	public void stop() {

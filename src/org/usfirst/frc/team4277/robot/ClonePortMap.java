@@ -3,8 +3,8 @@ package org.usfirst.frc.team4277.robot;
 public interface ClonePortMap {
 
 	// Intake Talon Ids
-	public static int INTAKE_LEFT = 16; // 30AMP -- Victor
-	public static int INTAKE_RIGHT = 15; // 30AMP -- Talon
+	public static int INTAKE_LEFT = 2; // 30AMP -- Victor
+	public static int INTAKE_RIGHT = 3; // 30AMP -- Talon
 
 	// Climber Talon Ids
 	public static int CLIMBER_BACK_WINCH = 10; // 40AMP -- Talon
@@ -26,11 +26,18 @@ public interface ClonePortMap {
 	public static int PNUEMATIC_CONTROL_MODULE_CAN_ID = 20;
 	public static int PNUEMATIC_CONTROL_MODULE_TIP_CHANNEL_ID = 0;
 	
+	// PWM ports 
+	public static int INTAKE_IO_POWER= 3; //Encoder
+	public static int INTAKE_IO_CHANNEL= 2; //Encoder
+	
+	public static int SHOOTER_CHANNEL_B = 0; //Encoder
+	public static int SHOOTER_CHANNEL_A = 1; //Encoder
+	
 	// Laptop USB Ports
 	// ex. public final static int JOE_DOE_SENSOR= 13;
 	public final int JOYSTICK = 0;
+	public final int XBOX_CONTROLLER = 2;
 	// public final int RIGHT_JOYSTICK = 5;
-	// public final int XBOX_CONTROLLER = 3;
 
 	// XBoxController
 	// ex. public final static int JOE_DOE_SENSOR= 13;

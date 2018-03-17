@@ -38,8 +38,8 @@ public interface PortMap {
 		// Laptop USB Ports
 	// ex. public final static int JOE_DOE_SENSOR= 13;
 	public final int JOYSTICK = 0;
+	public final int XBOX_CONTROLLER = 2;
 	//public final int RIGHT_JOYSTICK = 5;
-	//public final int XBOX_CONTROLLER = 3;
 	
 		// XBoxController
 	// ex. public final static int JOE_DOE_SENSOR= 13;
