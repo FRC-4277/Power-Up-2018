@@ -9,11 +9,14 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoDriveSide extends Command {
-
-    public AutoDriveSide() {
+	double angle;
+	double time;
+    public AutoDriveSide(double angle,double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
+    	this.time=time;
+    	this.angle=angle;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +25,7 @@ public class AutoDriveSide extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.mechDirectionalDriveGyro(180, 0.75, 2.0,OI.getGyroA());
+    	Robot.driveTrain.mechDirectionalDriveGyro(angle, 0.75,time,OI.getGyroA());
     }
 
     // Make this return true when this Command no longer needs to run execute()

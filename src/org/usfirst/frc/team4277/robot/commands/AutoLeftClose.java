@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoTest extends CommandGroup {
+public class AutoLeftClose extends CommandGroup {
 
-    public AutoTest() {
+    public AutoLeftClose() {
     	//OI.gyro.reset();
-    	addSequential(new AutoDrive());
-    	addSequential(new AutoDriveSide());
-    	addSequential(new AutoSpinRight());
+    	addSequential(new AutoDrive(5.1));
+    	addSequential(new AutoDriveSide(180,2.0));
+    	addSequential(new AutoSpinLeft());
     	addSequential(new AutoDriveBack());
     	addSequential(new AutoStop());
     	addSequential(new IntakeCubeOutCommand());

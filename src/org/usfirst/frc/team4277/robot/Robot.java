@@ -20,7 +20,8 @@ import edu.wpi.first.wpilibj.Compressor;
 import org.usfirst.frc.team4277.robot.commands.Drive;
 import org.usfirst.frc.team4277.robot.commands.AutoDrive;
 import org.usfirst.frc.team4277.robot.commands.AutoDriveSide;
-import org.usfirst.frc.team4277.robot.commands.AutoTest;
+import org.usfirst.frc.team4277.robot.commands.AutoLeftClose;
+import org.usfirst.frc.team4277.robot.commands.AutoRightClose;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
@@ -55,8 +56,7 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	public static final Crane launcher = new Crane(CLIMBER_LAUNCHER_MOTOR);
 	public static final Tipper tipper = new Tipper(PNUEMATIC_CONTROL_MODULE_CAN_ID,0);
 	public static final AutoDrive AutoDrive = new AutoDrive();
-	public static final  AutoDriveSide AutoDriveSide = new AutoDriveSide();
-	public static final AutoTest AutoTest = new AutoTest();
+	public static final AutoLeftClose AutoTest = new AutoLeftClose();
 	Command autoCommand;
 	SendableChooser<Command> sendableChooser = new SendableChooser<>();
 	public UsbCamera cameraOne;
@@ -82,10 +82,12 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		
 		// Add Autonomous Chooser
 		
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		
 
-		SmartDashboard.putData("Auto mode", sendableChooser);
-		sendableChooser.addDefault("Drive Foreward Auto", new AutoDrive());
+		SmartDashboard.putData("Auto 1mode", sendableChooser);
+		 sendableChooser.addDefault("Drive Forward Auto", new AutoDrive());
+		 sendableChooser.addObject("Start Left Close Switch", new AutoLeftClose());
+		 sendableChooser.addObject("Start Right Close Switch", new AutoRightClose());
 		
 
 		
@@ -145,8 +147,8 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	@Override
 	public void autonomousInit() {
 		OI.gyro.reset();
-		AutoTest.start();
-		//autoCommand = sendableChooser.getSelected();
+		//AutoTest.start();
+		autoCommand = sendableChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -156,9 +158,9 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		 */
 
 		// schedule the autonomous command (example)
-		//if (autoCommand != null) {
-		//	autoCommand.start();
-		//}
+		if (autoCommand != null) {
+			autoCommand.start();
+		}
 	}
 
 	/**
@@ -167,7 +169,7 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		AutoTest.start();
+		//AutoTest.start();
 		//System.out.println("hi1");
 	}
 
