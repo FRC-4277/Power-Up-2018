@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team4277.robot.subsystems;
 
-import org.usfirst.frc.team4277.robot.OI;
 import org.usfirst.frc.team4277.robot.commands.Drive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -128,7 +127,7 @@ public class MecanumDrive extends Subsystem {
 		frontRightTalon.set( ControlMode.PercentOutput, fRight);
 		backLeftTalon.set(ControlMode.PercentOutput, bLeft);
 		backRightTalon.set(ControlMode.PercentOutput, bRight);
-		System.out.println(gyro);
+		//System.out.println(gyro);
 	}
 	
 	public void stop() {
@@ -173,7 +172,7 @@ public class MecanumDrive extends Subsystem {
 		
 		//Drives the motors
 		while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
-			System.out.println(gyro.getAngle());
+			//System.out.println(gyro.getAngle());
 			double rad = Math.toRadians(angle+gyro.getAngle());
 			double xVal = Math.cos(rad) * speed;
 			double yVal = Math.sin(rad) * speed;

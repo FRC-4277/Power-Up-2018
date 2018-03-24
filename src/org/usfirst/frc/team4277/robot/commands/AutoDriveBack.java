@@ -9,11 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoDriveBack extends Command {
-
-	public AutoDriveBack() {
+	double time;
+	public AutoDriveBack(double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
+    	this.time=time;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +23,7 @@ public class AutoDriveBack extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.mechDirectionalDriveGyro(90, 0.5,2.0,OI.getGyroA());
+    	Robot.driveTrain.mechDirectionalDrive(90, 0.5,time);
     	//Robot.driveTrain.mechDirectionalDrive(180, 0.5, 5);
     	//Robot.driveTrain.stop();
     	//System.out.println("command");

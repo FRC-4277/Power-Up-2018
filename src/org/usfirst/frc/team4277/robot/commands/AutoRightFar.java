@@ -5,19 +5,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoLeftClose extends CommandGroup {
+public class AutoRightFar extends CommandGroup {
 
-    public AutoLeftClose() {
-    	//OI.gyro.reset();
-    //	if(Robot.isSwitchLeft) {
-    		addSequential(new AutoDrive(1.4));
-    		//addSequential(new AutoDriveSide(180,2.0));
-    		addSequential(new AutoSpinLeft(50));//make left
-    		addSequential(new AutoDriveBack(1.5));
-    		addSequential(new AutoStop());
-    		addSequential(new IntakeCubeOutCommand());
-    //	}
-    	
+    public AutoRightFar() {
+    	addSequential(new AutoDrive(2.2));
+		addSequential(new AutoDriveSide(0,7.0));
+		addSequential(new AutoSpinRight());
+		addSequential(new AutoDriveBack(1.75));
+		addSequential(new AutoSpinLeft(50));
+		addSequential(new AutoDriveBack(1.5));
+		addSequential(new AutoStop());
+		addSequential(new IntakeCubeOutCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

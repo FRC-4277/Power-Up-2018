@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4277.robot.commands;
 
-import org.usfirst.frc.team4277.robot.OI;
 import org.usfirst.frc.team4277.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,38 +7,38 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeCubeOutCommand extends Command {
+public class AutoRight extends Command {
 
-    public IntakeCubeOutCommand() {
+    public AutoRight() {
         // Use requires() here to declare subsystem dependencies
-        // 
-    	requires(Robot.intake);
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.stop();
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.pushCubeOut();
+    	if(Robot.isSwitchLeft) {
+    		new AutoRightFar().start();
+    	}
+    	else if (!Robot.isSwitchLeft) {
+    		new AutoRightClose().start();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !OI.getPhotoElectric();
+        return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() { 
-    	Robot.intake.stop();
+    protected void end() {
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.stop();
     }
 }

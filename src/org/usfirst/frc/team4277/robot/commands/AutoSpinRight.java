@@ -9,12 +9,19 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoSpinRight extends Command {
-
+	double angle;
 	private boolean end = false;
     public AutoSpinRight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
+    	angle = 7.0;
+    }
+    public AutoSpinRight(double angle) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.driveTrain);
+    	this.angle = angle;
     }
 
     // Called just before this Command runs the first time
@@ -23,12 +30,23 @@ public class AutoSpinRight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Math.abs(OI.getGyroA().getAngle()) >= 5.0) {
+    	if(angle == 7.0) {
+    	if(Math.abs(OI.getGyroA().getAngle()) >= angle) {
     		Robot.driveTrain.mechSpinRight(0.5);
     	}
     	else {
     		Robot.driveTrain.stop();
     		end = true;
+    	}
+    	}
+    	else {
+    		if(Math.abs(OI.getGyroA().getAngle()) < angle) {
+        		Robot.driveTrain.mechSpinRight(0.5);
+        	}
+        	else {
+        		Robot.driveTrain.stop();
+        		end = true;
+        	}
     	}
     }
 

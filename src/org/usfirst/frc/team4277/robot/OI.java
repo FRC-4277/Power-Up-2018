@@ -11,11 +11,13 @@ import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
-import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
+import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
 import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchDownCommand;
-import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
+import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -30,6 +32,7 @@ public class OI implements ClonePortMap{
 	public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
 	public static Joystick xboxController = new Joystick(2);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+	public static DigitalInput photoElectric = new DigitalInput(0);
 
 	public OI() {
 		//Pilot Controls
@@ -43,7 +46,7 @@ public class OI implements ClonePortMap{
 		climbUpButton.whileHeld(new ClimberLaunchCommand()); 
 		
 		JoystickButton outtakeButton = new JoystickButton (driveStick, 4);
-		outtakeButton.whileHeld(new IntakeCubeOutCommand());
+		outtakeButton.whenPressed(new IntakeCubeOutCommand());
 		
 		JoystickButton climbDownButton = new JoystickButton (driveStick, 3);
 		climbDownButton.whileHeld(new ClimberRetractCommand());
@@ -113,5 +116,8 @@ public class OI implements ClonePortMap{
 	}
 	public static Gyro getGyroA() {
 		return gyro;
+	}
+	public static boolean getPhotoElectric() {
+		return photoElectric.get();
 	}
 }

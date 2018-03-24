@@ -7,8 +7,29 @@
 
 package org.usfirst.frc.team4277.robot;
 
+import org.usfirst.frc.team4277.robot.commands.AutoDrive;
+import org.usfirst.frc.team4277.robot.commands.AutoDriveStraight;
+import org.usfirst.frc.team4277.robot.commands.AutoLeftClose;
+import org.usfirst.frc.team4277.robot.commands.AutoLeftFar;
+import org.usfirst.frc.team4277.robot.commands.AutoRightFar;
+import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
+import org.usfirst.frc.team4277.robot.commands.Drive;
+import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
+import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
+import org.usfirst.frc.team4277.robot.commands.Shoot;
+import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
+import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
+import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
+import org.usfirst.frc.team4277.robot.subsystems.Climber;
+import org.usfirst.frc.team4277.robot.subsystems.Crane;
+import org.usfirst.frc.team4277.robot.subsystems.Intake;
+import org.usfirst.frc.team4277.robot.subsystems.MecanumDrive;
+import org.usfirst.frc.team4277.robot.subsystems.Shooter;
+import org.usfirst.frc.team4277.robot.subsystems.Tipper;
+
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,25 +37,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.Compressor;
-import org.usfirst.frc.team4277.robot.commands.Drive;
-import org.usfirst.frc.team4277.robot.commands.AutoDrive;
-import org.usfirst.frc.team4277.robot.commands.AutoDriveSide;
-import org.usfirst.frc.team4277.robot.commands.AutoLeftClose;
-import org.usfirst.frc.team4277.robot.commands.AutoRightClose;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
-import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
-import org.usfirst.frc.team4277.robot.commands.Shoot;
-import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
-import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
-import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
-import org.usfirst.frc.team4277.robot.subsystems.Climber;
-import org.usfirst.frc.team4277.robot.subsystems.Intake;
-import org.usfirst.frc.team4277.robot.subsystems.Crane;
-import org.usfirst.frc.team4277.robot.subsystems.MecanumDrive;
-import org.usfirst.frc.team4277.robot.subsystems.Shooter;
-import org.usfirst.frc.team4277.robot.subsystems.Tipper;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -46,7 +48,8 @@ import org.usfirst.frc.team4277.robot.subsystems.Tipper;
  */
 public class Robot extends TimedRobot implements ClonePortMap {
 	
-	
+	String gameData;
+	public static boolean isSwitchLeft;
 	public static Preferences prefs;
 	public static OI m_oi;
 	public static final MecanumDrive driveTrain= new MecanumDrive(DRIVE_FRONT_RIGHT, DRIVE_FRONT_LEFT, DRIVE_BACK_RIGHT, DRIVE_BACK_LEFT);
@@ -85,9 +88,9 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		
 
 		SmartDashboard.putData("Auto 1mode", sendableChooser);
-		 sendableChooser.addDefault("Drive Forward Auto", new AutoDrive());
-		 sendableChooser.addObject("Start Left Close Switch", new AutoLeftClose());
-		 sendableChooser.addObject("Start Right Close Switch", new AutoRightClose());
+		 sendableChooser.addDefault("Drive Forward Auto", new AutoDriveStraight());
+		 sendableChooser.addObject("Start Left", new AutoLeftFar());
+		 sendableChooser.addObject("Start Right", new AutoRightFar());
 		
 
 		
@@ -146,7 +149,22 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	 */
 	@Override
 	public void autonomousInit() {
+		
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if(gameData.length() > 0) {
+			if (gameData.charAt(0) == 'L'){
+				isSwitchLeft = true;
+			}
+			else if (gameData.charAt(0) == 'R') {
+				isSwitchLeft = false;
+			}
+		}
+		System.out.println(isSwitchLeft);
+		System.out.println(gameData);
+		
+		
 		OI.gyro.reset();
+		
 		//AutoTest.start();
 		autoCommand = sendableChooser.getSelected();
 
@@ -161,7 +179,8 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		if (autoCommand != null) {
 			autoCommand.start();
 		}
-	}
+		}
+	
 
 	/**
 	 * This function is called periodically during autonomous.
@@ -190,6 +209,7 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		//System.out.println(OI.getPhotoElectric());
 		//comp.setClosedLoopControl(true);
 		//tipper.set(true);
 	}

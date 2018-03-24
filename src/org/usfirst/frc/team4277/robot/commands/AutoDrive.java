@@ -29,7 +29,7 @@ public class AutoDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.mechDirectionalDriveGyro(270, 0.5,time,OI.getGyroA());
+    	Robot.driveTrain.mechDirectionalDriveGyro(270, 0.9,time,OI.getGyroA());
     	//Robot.driveTrain.mechDirectionalDrive(180, 0.5, 5);
     	//Robot.driveTrain.stop();
     	//System.out.println("command");
