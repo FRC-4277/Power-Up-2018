@@ -10,7 +10,6 @@ package org.usfirst.frc.team4277.robot;
 import org.usfirst.frc.team4277.robot.commands.AutoDrive;
 import org.usfirst.frc.team4277.robot.commands.AutoDriveStraight;
 import org.usfirst.frc.team4277.robot.commands.AutoLeftClose;
-import org.usfirst.frc.team4277.robot.commands.AutoLeftFar;
 import org.usfirst.frc.team4277.robot.commands.AutoRightFar;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.Drive;
@@ -88,9 +87,12 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		
 
 		SmartDashboard.putData("Auto 1mode", sendableChooser);
-		 sendableChooser.addDefault("Drive Forward Auto", new AutoDriveStraight());
-		 sendableChooser.addObject("Start Left", new AutoLeftFar());
+		 sendableChooser.addDefault("DriveForward", new AutoDriveStraight());
+		 sendableChooser.addObject("Start Left", new AutoLeftClose());
 		 sendableChooser.addObject("Start Right", new AutoRightFar());
+		// sendableChooser.addObject("Drive Forward", new AutoDriveStraight());
+
+		 
 		
 
 		
@@ -150,7 +152,9 @@ public class Robot extends TimedRobot implements ClonePortMap {
 	@Override
 	public void autonomousInit() {
 		
+		//TODO:  Add while loop
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
 		if(gameData.length() > 0) {
 			if (gameData.charAt(0) == 'L'){
 				isSwitchLeft = true;

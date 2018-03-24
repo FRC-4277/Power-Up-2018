@@ -10,6 +10,7 @@ public class AutoDriveStraight extends CommandGroup {
     public AutoDriveStraight() {
     	addSequential(new AutoDrive());
     	addSequential(new AutoStop());
+    	//addSequential(new AutoSpinRightL(5000));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

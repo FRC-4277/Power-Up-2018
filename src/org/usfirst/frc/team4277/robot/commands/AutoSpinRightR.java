@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4277.robot.commands;
 
+import org.usfirst.frc.team4277.robot.OI;
 import org.usfirst.frc.team4277.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,15 +8,20 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoDriveSide extends Command {
+public class AutoSpinRightR extends Command {
 	double angle;
-	double time;
-    public AutoDriveSide(double angle,double time) {
+	private boolean end = false;
+    public AutoSpinRightR() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
-    	this.time=time;
-    	this.angle=angle;
+    	angle = 7.0;
+    }
+    public AutoSpinRightR(double angle) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.driveTrain);
+    	this.angle = angle;
     }
 
     // Called just before this Command runs the first time
@@ -24,17 +30,33 @@ public class AutoDriveSide extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.mechDirectionalDrive(angle, 1.0,time);
+    	if(angle == 7.0) {
+    	if(Math.abs(OI.getGyroA().getAngle()) >= angle) {
+    		Robot.driveTrain.mechSpinRight(0.5);
+    	}
+    	else {
+    		Robot.driveTrain.stop();
+    		end = true;
+    	}
+    	}
+    	else {
+    		if(Math.abs(OI.getGyroA().getAngle()) > angle) {
+        		Robot.driveTrain.mechSpinRight(0.5);
+        	}
+        	else {
+        		Robot.driveTrain.stop();
+        		end = true;
+        	}
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return end;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same

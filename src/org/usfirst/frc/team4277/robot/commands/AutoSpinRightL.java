@@ -8,22 +8,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoSpinLeft extends Command {
+public class AutoSpinRightL extends Command {
 	double angle;
 	private boolean end = false;
-    public AutoSpinLeft() {
+    public AutoSpinRightL() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
     	angle = 7.0;
     }
-    public AutoSpinLeft(double angle) {
+    public AutoSpinRightL(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
     	this.angle = angle;
     }
-
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -32,23 +31,23 @@ public class AutoSpinLeft extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(angle == 7.0) {
-        	if(Math.abs(OI.getGyroA().getAngle()) >= angle) {
-        		Robot.driveTrain.mechSpinLeft(0.5);
+    	if(Math.abs(OI.getGyroA().getAngle()) >= angle) {
+    		Robot.driveTrain.mechSpinRight(0.5);
+    	}
+    	else {
+    		Robot.driveTrain.stop();
+    		end = true;
+    	}
+    	}
+    	else {
+    		if(Math.abs(OI.getGyroA().getAngle()) < angle) {
+        		Robot.driveTrain.mechSpinRight(0.5);
         	}
         	else {
         		Robot.driveTrain.stop();
         		end = true;
         	}
-        	}
-        	else {
-        		if(Math.abs(OI.getGyroA().getAngle()) < angle) {
-            		Robot.driveTrain.mechSpinLeft(0.5);
-            	}
-            	else {
-            		Robot.driveTrain.stop();
-            		end = true;
-            	}
-        	}
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

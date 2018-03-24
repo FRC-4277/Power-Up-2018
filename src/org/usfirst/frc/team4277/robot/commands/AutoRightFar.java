@@ -8,14 +8,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoRightFar extends CommandGroup {
 
     public AutoRightFar() {
-    	addSequential(new AutoDrive(2.2));
-		addSequential(new AutoDriveSide(0,7.0));
-		addSequential(new AutoSpinRight());
-		addSequential(new AutoDriveBack(1.75));
-		addSequential(new AutoSpinLeft(50));
+    	addSequential(new AutoDrive(2.4));
+    	addSequential(new AutoSpinLeftR(62.5));
+    	
+		addSequential(new AutoDriveSideGyro(0,3.0));
+		addSequential(new AutoDriveSide(0,2.85));
+		addSequential(new AutoSpinRightR(90));
 		addSequential(new AutoDriveBack(1.5));
 		addSequential(new AutoStop());
-		addSequential(new IntakeCubeOutCommand());
+		addSequential(new IntakeCubeInCommand());
+		
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

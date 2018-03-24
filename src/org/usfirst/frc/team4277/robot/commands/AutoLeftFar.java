@@ -8,14 +8,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoLeftFar extends CommandGroup {
 
     public AutoLeftFar() {
-    	addSequential(new AutoDrive(2.2));
-    	addSequential(new AutoDriveSide(175,5.5));
-    	addSequential(new AutoSpinLeft());
-    	addSequential(new AutoDriveBack(1.75));
-    	addSequential(new AutoSpinRight(50));
+    	addSequential(new AutoDrive(2.4));
+    	addSequential(new AutoSpinRightL(55));
+    	addSequential(new AutoDriveSideGyro(180,2.7));
+    	//addSequential(new AutoDrive(3.1));
+    	addSequential(new AutoDriveSide(200,2.00));
+    	//OI.gyro.reset();
+    	addSequential(new AutoSpinLeftL(95));
     	addSequential(new AutoDriveBack(1.5));
     	addSequential(new AutoStop());
-    	addSequential(new IntakeCubeOutCommand());
+    	addSequential(new IntakeCubeInCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

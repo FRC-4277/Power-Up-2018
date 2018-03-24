@@ -9,7 +9,7 @@ public interface ClonePortMap {
 	// Climber Talon Ids
 	public static int CLIMBER_BACK_WINCH = 10; // 40AMP -- Talon
 	public static int CLIMBER_FRONT_WINCH = 11; // 40AMP -- Talon
-	public static int CLIMBER_LAUNCHER_MOTOR = 14; // 30AMP -- Talon
+	public static int CLIMBER_LAUNCHER_MOTOR = 1; // 30AMP -- Talon
 
 	// Drive Train Talon Ids
 	public static int DRIVE_FRONT_RIGHT = 1; // 40AMP -- Talon

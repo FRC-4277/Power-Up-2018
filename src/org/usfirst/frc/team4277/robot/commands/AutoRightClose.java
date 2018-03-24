@@ -9,8 +9,8 @@ public class AutoRightClose extends CommandGroup {
 
     public AutoRightClose() {
     	//OI.gyro.reset();
-    		addSequential(new AutoDrive(1.4));
-    		addSequential(new AutoSpinRight(50));
+    		addSequential(new AutoDrive(1.8));
+    		addSequential(new AutoSpinRightL(60));
     		addSequential(new AutoDriveBack(1.5));
     		addSequential(new AutoStop());
     		addSequential(new IntakeCubeOutCommand());

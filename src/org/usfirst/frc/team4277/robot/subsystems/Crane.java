@@ -3,19 +3,17 @@ package org.usfirst.frc.team4277.robot.subsystems;
 import org.usfirst.frc.team4277.robot.Preferences;
 import org.usfirst.frc.team4277.robot.Robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Crane extends Subsystem {
 	
-	public TalonSRX climberLauncherMotor;
+	Victor climberLauncherMotor;
 	
 	public Crane(int launchMotor) {
-		climberLauncherMotor = new TalonSRX(launchMotor);
+		climberLauncherMotor = new Victor(launchMotor);
 	}
 	
 	public void launch () {
@@ -24,7 +22,8 @@ public class Crane extends Subsystem {
 		SmartDashboard.putNumber(Preferences.CRANE_SPEED, craneSpeed);
 		SmartDashboard.putNumber(Preferences.CRANE_WAIT, craneWait);
 		System.out.println("Crane Launch");
-		climberLauncherMotor.set(ControlMode.PercentOutput, craneSpeed);
+		//climberLauncherMotor.set(ControlMode.PercentOutput, craneSpeed);
+		climberLauncherMotor.set(craneSpeed);
 		Timer.delay(craneWait);
 		stop();
 	}
@@ -35,13 +34,15 @@ public class Crane extends Subsystem {
 		SmartDashboard.putNumber(Preferences.CRANE_SPEED, craneSpeed);
 		SmartDashboard.putNumber(Preferences.CRANE_WAIT, craneWait);
 		System.out.println("Crane Launch");
-		climberLauncherMotor.set(ControlMode.PercentOutput, craneSpeed);
+		//climberLauncherMotor.set(ControlMode.PercentOutput, craneSpeed);
+		climberLauncherMotor.set(craneSpeed);
 		Timer.delay(craneWait);
 		stop();
 	}
 	public void stop() {
 		System.out.println("Crane Stop");
-		climberLauncherMotor.set(ControlMode.PercentOutput, 0.0);
+		//climberLauncherMotor.set(ControlMode.PercentOutput, 0.0);
+		climberLauncherMotor.set(0.0);
 	}
 
 	@Override

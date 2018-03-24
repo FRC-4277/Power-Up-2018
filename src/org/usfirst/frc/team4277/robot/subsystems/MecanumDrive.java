@@ -131,7 +131,7 @@ public class MecanumDrive extends Subsystem {
 	}
 	
 	public void stop() {
-		mechDirectionalDrive(0,0,1);
+		mechDirectionalDrive(0,0,0.5);
 	}
 	
 	public void autoStop() {

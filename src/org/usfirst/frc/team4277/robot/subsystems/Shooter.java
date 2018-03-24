@@ -1,14 +1,9 @@
 package org.usfirst.frc.team4277.robot.subsystems;
 
 import org.usfirst.frc.team4277.robot.PortMap;
-import org.usfirst.frc.team4277.robot.Preferences;
-import org.usfirst.frc.team4277.robot.Robot;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
