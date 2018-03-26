@@ -19,13 +19,20 @@ public class AutoLeft extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
+    
     protected void execute() {
-    	if(Robot.isSwitchLeft) {
+    	if (Robot.randomizerSorter.isCloseSwitchLeft() == null) {
+    		new AutoDriveStraight().start();
+    	}
+    	else if(Robot.randomizerSorter.isCloseSwitchLeft().booleanValue()) {
+    		System.out.println("AutoLeftClose"+ Robot.isSwitchLeft);
     		new AutoLeftClose().start();;
     	}
-    	else if (!Robot.isSwitchLeft) {
+    	else if (!Robot.randomizerSorter.isCloseSwitchLeft().booleanValue()) {
+    		System.out.println("AutoLeftFar"+Robot.isSwitchLeft);
     		new AutoLeftFar().start();
     	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
