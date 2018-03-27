@@ -9,10 +9,9 @@ package org.usfirst.frc.team4277.robot;
 
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
-import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
-import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
+import org.usfirst.frc.team4277.robot.commands.IntakeCommandGroup;
+import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchDownCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
 
@@ -40,35 +39,36 @@ public class OI implements ClonePortMap{
 		//shooterTrigger.whileHeld(new Shoot());
 		
 		JoystickButton intakeButton = new JoystickButton (driveStick, 6);
-		intakeButton.whileHeld(new IntakeCubeInCommand());
+		intakeButton.whileHeld(new OuttakeCubeCommand());
+		
+		JoystickButton outtakeButton = new JoystickButton (driveStick, 4);
+		outtakeButton.whenPressed(new IntakeCommandGroup());		
 		
 		JoystickButton climbUpButton = new JoystickButton (driveStick, 5);
 		climbUpButton.whileHeld(new ClimberLaunchCommand()); 
-		
-		JoystickButton outtakeButton = new JoystickButton (driveStick, 4);
-		outtakeButton.whenPressed(new IntakeCubeOutCommand());
-		
+
 		JoystickButton climbDownButton = new JoystickButton (driveStick, 3);
 		climbDownButton.whileHeld(new ClimberRetractCommand());
 		
 		JoystickButton winchUpButton = new JoystickButton(driveStick, 9);
 		winchUpButton.whileHeld(new WinchUpCommand());
-		
-		JoystickButton tipperEngageButton = new JoystickButton(driveStick, 10);
-		tipperEngageButton.whenPressed(new TipperUpCommand());
-		
-		JoystickButton tipperDisengageButton = new JoystickButton(driveStick, 12);
-		tipperDisengageButton.whenPressed(new TipperDownCommand());
-		
+
 		JoystickButton winchDownButton = new JoystickButton(driveStick, 11);
 		winchDownButton.whileHeld(new WinchDownCommand());
 		
+		/*JoystickButton tipperEngageButton = new JoystickButton(driveStick, 10);
+		tipperEngageButton.whenPressed(new TipperUpCommand());
+		
+		JoystickButton tipperDisengageButton = new JoystickButton(driveStick, 12);
+		tipperDisengageButton.whenPressed(new TipperDownCommand());*/
+		
+		
 		//XboxButtonControllers
 		JoystickButton intakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_X);
-		intakeXboxButton.whileHeld(new IntakeCubeInCommand());
+		intakeXboxButton.whileHeld(new OuttakeCubeCommand());
 		
 		JoystickButton outtakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_B);
-		outtakeXboxButton.whileHeld(new IntakeCubeOutCommand());
+		outtakeXboxButton.whileHeld(new IntakeCubeCommand());
 		
 		JoystickButton climbUpXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_Y);
 		climbUpXboxButton.whileHeld(new ClimberLaunchCommand());

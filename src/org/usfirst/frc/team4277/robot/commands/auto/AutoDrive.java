@@ -1,5 +1,6 @@
-package org.usfirst.frc.team4277.robot.commands;
+package org.usfirst.frc.team4277.robot.commands.auto;
 
+import org.usfirst.frc.team4277.robot.OI;
 import org.usfirst.frc.team4277.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,40 +8,45 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class WinchUpCommand extends Command {
-
-    public WinchUpCommand() {
+public class AutoDrive extends Command {
+	double time;
+    public AutoDrive(Double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.climber);
+    	requires(Robot.driveTrain);
+    	this.time = time;
+    }
+    public AutoDrive() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.driveTrain);
+    	this.time = 3.0;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.stop();
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.fastClimb();
-    	System.out.println("Winching up");
+    	Robot.driveTrain.mechDirectionalDriveGyro(270, 0.9,time,OI.getGyroA());
+    	//Robot.driveTrain.mechDirectionalDrive(180, 0.5, 5);
+    	//Robot.driveTrain.stop();
+    	//System.out.println("command");
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.stop();
+    	Robot.driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.climber.stop();
-
     }
 }

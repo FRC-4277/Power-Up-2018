@@ -7,24 +7,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class WinchUpCommand extends Command {
+public class OuttakeCubeCommand extends Command {
 
-    public WinchUpCommand() {
-        // Use requires() here to declare subsystem dependencies
+    public OuttakeCubeCommand() {
         // eg. requires(chassis);
-    	requires(Robot.climber);
+    	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.stop();
-
+        Robot.intake.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.fastClimb();
-    	System.out.println("Winching up");
+    	Robot.intake.pullCubeIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -34,13 +31,12 @@ public class WinchUpCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.stop();
+        Robot.intake.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.climber.stop();
-
+    	Robot.intake.stop();
     }
 }

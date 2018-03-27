@@ -34,16 +34,8 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(OI.getdSTrigger() == true && gyroDrive == false) gyroDrive = true;
-    	else if(OI.getdSTrigger() == true && gyroDrive == true) gyroDrive = false;
     	
-    	if(gyroDrive == false) {
-    		MecanumDrive.mechJoystickDrive(OI.getdriveStick());
-    	}
-    	if(gyroDrive == true) {
-    		MecanumDrive.mechJoystickGyroDrive(OI.getdriveStick(), OI.getGyro());
-    	}
-    	//Robot.driveTrain.mechJoystickDrive(OI.getdriveStick());
+    	Robot.driveTrain.mechJoystickDrive(OI.getdriveStick());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -98,7 +98,7 @@ public class MecanumDrive extends Subsystem {
 		backRightTalon.set (ControlMode.PercentOutput, bRight);
 	}
 	
-	public static void mechJoystickGyroDrive(Joystick stick, Double gyro) {//hopefully we can get a navX gyro for precise data(IM)
+	/*public static void mechJoystickGyroDrive(Joystick stick, Double gyro) {//hopefully we can get a navX gyro for precise data(IM)
 		double xVal = stick.getTwist();
 		double yVal = stick.getY();//experiment with running this through equations
 		double twist = stick.getX();
@@ -128,7 +128,7 @@ public class MecanumDrive extends Subsystem {
 		backLeftTalon.set(ControlMode.PercentOutput, bLeft);
 		backRightTalon.set(ControlMode.PercentOutput, bRight);
 		//System.out.println(gyro);
-	}
+	}*/
 	
 	public void stop() {
 		mechDirectionalDrive(0,0,0.5);

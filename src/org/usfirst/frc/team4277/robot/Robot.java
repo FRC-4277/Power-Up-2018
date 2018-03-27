@@ -7,19 +7,19 @@
 
 package org.usfirst.frc.team4277.robot;
 
-import org.usfirst.frc.team4277.robot.commands.AutoDrive;
-import org.usfirst.frc.team4277.robot.commands.AutoDriveStraight;
-import org.usfirst.frc.team4277.robot.commands.AutoLeft;
-import org.usfirst.frc.team4277.robot.commands.AutoLeftClose;
-import org.usfirst.frc.team4277.robot.commands.AutoRight;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.Drive;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
+import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
 import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
+import org.usfirst.frc.team4277.robot.commands.auto.AutoDrive;
+import org.usfirst.frc.team4277.robot.commands.auto.AutoLeft;
+import org.usfirst.frc.team4277.robot.commands.auto.AutoRight;
+import org.usfirst.frc.team4277.robot.commands.auto.groups.AutoDriveStraight;
+import org.usfirst.frc.team4277.robot.commands.auto.groups.AutoLeftClose;
 import org.usfirst.frc.team4277.robot.subsystems.Climber;
 import org.usfirst.frc.team4277.robot.subsystems.Crane;
 import org.usfirst.frc.team4277.robot.subsystems.Intake;
@@ -95,8 +95,8 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		// Add commands
 
 		SmartDashboard.putData("Drive command", new Drive());
-		SmartDashboard.putData("Cube in command", new IntakeCubeInCommand());
-		SmartDashboard.putData("Cube out command", new IntakeCubeOutCommand());
+		SmartDashboard.putData("Cube in command", new OuttakeCubeCommand());
+		SmartDashboard.putData("Cube out command", new IntakeCubeCommand());
 		SmartDashboard.putData("Launch command", new ClimberLaunchCommand());
 		SmartDashboard.putData("Shoot command", new Shoot());
 		SmartDashboard.putData("Winch up Command", new WinchUpCommand());
@@ -104,13 +104,13 @@ public class Robot extends TimedRobot implements ClonePortMap {
 		SmartDashboard.putData("Tip down command", new TipperDownCommand());
 
 		LiveWindow.add(new Drive());
-		LiveWindow.add(new IntakeCubeInCommand());
-		LiveWindow.add(new IntakeCubeOutCommand());
+		LiveWindow.add(new OuttakeCubeCommand());
+		LiveWindow.add(new IntakeCubeCommand());
 		LiveWindow.add(new ClimberLaunchCommand());
 		LiveWindow.add(new Shoot());
 		LiveWindow.add(new TipperDownCommand());
 		LiveWindow.add(new TipperUpCommand());
-
+	            
 		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
 		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
 
