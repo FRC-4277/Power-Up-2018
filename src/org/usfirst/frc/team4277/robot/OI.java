@@ -9,16 +9,17 @@ package org.usfirst.frc.team4277.robot;
 
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeInCommand;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeOutCommand;
-import org.usfirst.frc.team4277.robot.commands.Shoot;
-import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
-import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
+import org.usfirst.frc.team4277.robot.commands.IntakeCommandGroup;
+import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchDownCommand;
-import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
+import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -27,37 +28,53 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI implements PortMap{
 	
 	public static Joystick driveStick = new Joystick(JOYSTICK);
-	public static JoystickButton dSTrigger = new JoystickButton(driveStick,8);
+	public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
+	public static Joystick xboxController = new Joystick(2);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+	public static DigitalInput photoElectric = new DigitalInput(0);
 
 	public OI() {
 		//Pilot Controls
-		JoystickButton shooterTrigger = new JoystickButton(driveStick, 1);
-		shooterTrigger.whileHeld(new Shoot());
+		//JoystickButton shooterTrigger = new JoystickButton(driveStick, 0);
+		//shooterTrigger.whileHeld(new Shoot());
 		
-		JoystickButton intakeTrigger = new JoystickButton (driveStick, 6);
-		intakeTrigger.whileHeld(new IntakeCubeInCommand());
+		JoystickButton intakeButton = new JoystickButton (driveStick, 6);
+		intakeButton.whileHeld(new OuttakeCubeCommand());
 		
-		JoystickButton climbUpTrigger = new JoystickButton (driveStick, 5);
-		climbUpTrigger.whileHeld(new ClimberLaunchCommand()); 
+		JoystickButton outtakeButton = new JoystickButton (driveStick, 4);
+		outtakeButton.whenPressed(new IntakeCommandGroup());		
 		
-		JoystickButton outtakeTrigger = new JoystickButton (driveStick, 4);
-		outtakeTrigger.whileHeld(new IntakeCubeOutCommand());
+		JoystickButton climbUpButton = new JoystickButton (driveStick, 5);
+		climbUpButton.whileHeld(new ClimberLaunchCommand()); 
+
+		JoystickButton climbDownButton = new JoystickButton (driveStick, 3);
+		climbDownButton.whileHeld(new ClimberRetractCommand());
 		
-		JoystickButton climbDownTrigger = new JoystickButton (driveStick, 3);
-		climbDownTrigger.whileHeld(new ClimberRetractCommand());
+		JoystickButton winchUpButton = new JoystickButton(driveStick, 9);
+		winchUpButton.whileHeld(new WinchUpCommand());
+
+		JoystickButton winchDownButton = new JoystickButton(driveStick, 11);
+		winchDownButton.whileHeld(new WinchDownCommand());
 		
-		JoystickButton winchUpTrigger = new JoystickButton(driveStick, 9);
-		winchUpTrigger.whileHeld(new WinchUpCommand());
+		/*JoystickButton tipperEngageButton = new JoystickButton(driveStick, 10);
+		tipperEngageButton.whenPressed(new TipperUpCommand());
 		
-		JoystickButton tipperEngageTrigger = new JoystickButton(driveStick, 10);
-		tipperEngageTrigger.whenPressed(new TipperUpCommand());
+		JoystickButton tipperDisengageButton = new JoystickButton(driveStick, 12);
+		tipperDisengageButton.whenPressed(new TipperDownCommand());*/
 		
-		JoystickButton tipperDisengageTrigger = new JoystickButton(driveStick, 12);
-		tipperDisengageTrigger.whenPressed(new TipperDownCommand());
 		
-		JoystickButton winchDownTrigger = new JoystickButton(driveStick, 11);
-		winchDownTrigger.whileHeld(new WinchDownCommand());
+		//XboxButtonControllers
+		JoystickButton intakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_X);
+		intakeXboxButton.whileHeld(new OuttakeCubeCommand());
+		
+		JoystickButton outtakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_B);
+		outtakeXboxButton.whileHeld(new IntakeCubeCommand());
+		
+		JoystickButton climbUpXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_Y);
+		climbUpXboxButton.whileHeld(new ClimberLaunchCommand());
+		
+		JoystickButton climbDownXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_A);
+		climbDownXboxButton.whileHeld(new ClimberRetractCommand());
 	}
 	
 	
@@ -96,5 +113,11 @@ public class OI implements PortMap{
 	}
 	public static double getGyro() {
 		return gyro.getAngle();
+	}
+	public static Gyro getGyroA() {
+		return gyro;
+	}
+	public static boolean getPhotoElectric() {
+		return photoElectric.get();
 	}
 }

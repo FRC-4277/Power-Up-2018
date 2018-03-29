@@ -6,6 +6,7 @@ import org.usfirst.frc.team4277.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,16 +40,16 @@ public class Shooter extends Subsystem implements PortMap {
 		rightMotor.set(ControlMode.PercentOutput, shooterSpeed);
 
 		SmartDashboard.putNumber("Shooter:  Left speed", leftMotor.getMotorOutputPercent());
-		//SmartDashboard.putNumber("Shooter:  Right speed", rightMotor.getMotorOutputPercent());
+		SmartDashboard.putNumber("Shooter:  Right speed", rightMotor.getMotorOutputPercent());
 		SmartDashboard.putNumber("Shooter:  Left encoder", leftEncoder.getRate());
-		//SmartDashboard.putNumber("Shooter:  Right encoder", rightEncoder.get());
+		SmartDashboard.putNumber("Shooter:  Right encoder", rightEncoder.get());
 
 	}
 
 	public void stopSpinning() {
 		leftMotor.set(ControlMode.PercentOutput, 0);
 		rightMotor.set(ControlMode.PercentOutput, 0);
-		// rightEncoder.reset();
+		rightEncoder.reset();
 		leftEncoder.reset();
 	}
 

@@ -6,6 +6,7 @@ import org.usfirst.frc.team4277.robot.Robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,7 +20,7 @@ public class Climber extends Subsystem {
 	public Climber (int leftWinch, int rightWinch) {
 		winchLeftMotor = new TalonSRX(leftWinch);
 		winchRightMotor = new TalonSRX(rightWinch);
-	}	
+	}		
 	
 
     // Put methods for controlling this subsystem

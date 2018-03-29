@@ -8,6 +8,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,13 +21,14 @@ public class Intake extends Subsystem implements PortMap {
 	TalonSRX intakeMotorRight;
 	int channel = 0;
 	int moduleNum = 0;
+	Solenoid piston;
 	
 
 	public Intake(int leftMotorPort, int rightMotorPort) {
 		intakeMotorLeft = new VictorSPX(leftMotorPort);
-		intakeMotorRight = new TalonSRX(rightMotorPort);
+ 		intakeMotorRight = new TalonSRX(rightMotorPort);
 		
-		//Solenoid piston = new Solenoid(moduleNum, channel);
+		piston = new Solenoid(moduleNum, channel);
 	}
 
 	public void pullCubeIn() {
@@ -53,7 +56,7 @@ public class Intake extends Subsystem implements PortMap {
 	}
 	
 	public void lowerIntake(boolean state) {
-		//piston.set(state);
+		piston.set(state);
 	}
 
 	public void initDefaultCommand() {

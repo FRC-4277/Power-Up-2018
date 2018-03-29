@@ -7,15 +7,15 @@
 
 package org.usfirst.frc.team4277.robot.subsystems;
 
-import org.usfirst.frc.team4277.robot.Preferences;
-import org.usfirst.frc.team4277.robot.Robot;
-import org.usfirst.frc.team4277.robot.commands.*;
-import edu.wpi.first.wpilibj.Joystick;
+import org.usfirst.frc.team4277.robot.commands.Drive;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -25,20 +25,23 @@ public class MecanumDrive extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	static TalonSRX frontRightTalon;
-	static TalonSRX frontLeftTalon;
-	static TalonSRX backRightTalon;
-	static TalonSRX backLeftTalon;
+	static WPI_TalonSRX frontRightTalon;
+	static WPI_TalonSRX frontLeftTalon;
+	static WPI_TalonSRX backRightTalon;
+	static WPI_TalonSRX backLeftTalon;
+	edu.wpi.first.wpilibj.drive.MecanumDrive mDriveWPI;
 	
 	double frontRightSpeed,backRightSpeed,frontLeftSpeed,backLeftSpeed;
 	
 	public MecanumDrive(int frPort, int flPort, int brPort, int blPort){
 		System.out.println("MecanumDrive create");
 			//motor controller assignments
-			frontRightTalon = new TalonSRX(frPort);
-			frontLeftTalon = new TalonSRX(flPort);
-			backRightTalon = new TalonSRX(brPort);
-			backLeftTalon = new TalonSRX(blPort);
+			frontRightTalon = new WPI_TalonSRX(frPort);
+			frontLeftTalon = new WPI_TalonSRX(flPort);
+			backRightTalon = new WPI_TalonSRX(brPort);
+			backLeftTalon = new WPI_TalonSRX(blPort);
+			
+			mDriveWPI = new edu.wpi.first.wpilibj.drive.MecanumDrive(frontLeftTalon,backRightTalon,frontRightTalon,backRightTalon);
 			
 			backRightTalon.setInverted(true);
 			frontRightTalon.setInverted(true);
@@ -57,12 +60,12 @@ public class MecanumDrive extends Subsystem {
 	
 	public static void mechJoystickDrive(Joystick stick){
 		
-		double sensitivity = Robot.prefs.getDouble("Sensitivity", 5);
-		SmartDashboard.putNumber(Preferences.SENSITIVITY, sensitivity);
+		//double sensitivity = Robot.prefs.getDouble("Sensitivity", 5);
+		//SmartDashboard.putNumber(Preferences.SENSITIVITY, sensitivity);
 		
-		double twist = Math.pow(stick.getX(), sensitivity);
+		double twist = Math.pow(stick.getX(), 5);
 		
-		double yVal = Math.pow(stick.getY(), sensitivity);//experiment with running this through equations
+		double yVal = Math.pow(stick.getY(), 3);//experiment with running this through equations
 		double xVal = stick.getTwist();
 		
 		if (Math.abs(xVal) < 0.05) xVal = 0;
@@ -95,10 +98,10 @@ public class MecanumDrive extends Subsystem {
 		backRightTalon.set (ControlMode.PercentOutput, bRight);
 	}
 	
-	public static void mechJoystickGyroDrive(Joystick stick, Double gyro) {//hopefully we can get a navX gyro for precise data(IM)
-		double xVal = stick.getX();
+	/*public static void mechJoystickGyroDrive(Joystick stick, Double gyro) {//hopefully we can get a navX gyro for precise data(IM)
+		double xVal = stick.getTwist();
 		double yVal = stick.getY();//experiment with running this through equations
-		double twist = stick.getTwist();
+		double twist = stick.getX();
 		double orientation = Math.toRadians(gyro);
 		
 		if (Math.abs(xVal) < 0.05) xVal = 0;
@@ -108,7 +111,7 @@ public class MecanumDrive extends Subsystem {
 		double adjustor = ((2*Math.sqrt(2))/2) + Math.abs(twist);
 		
 		double speed = Math.sqrt((Math.pow(xVal, 2)) + (Math.pow(yVal, 2)));
-		double angle = Math.asin(yVal/speed) + orientation;
+		double angle = Math.atan2(yVal, xVal) + orientation;
 		
 		double fLeft = ((Math.sin(angle)*speed)-(Math.cos(angle)*speed)-twist) / adjustor;
 		double fRight = ((Math.sin(angle)*speed)+(Math.cos(angle)*speed)+twist) / adjustor;
@@ -124,33 +127,63 @@ public class MecanumDrive extends Subsystem {
 		frontRightTalon.set( ControlMode.PercentOutput, fRight);
 		backLeftTalon.set(ControlMode.PercentOutput, bLeft);
 		backRightTalon.set(ControlMode.PercentOutput, bRight);
-	}
+		//System.out.println(gyro);
+	}*/
 	
 	public void stop() {
-		mechDirectionalDrive (0.0, 0.0, 10);
+		mechDirectionalDrive(0,0,0.5);
 	}
 	
+	public void autoStop() {
+		frontLeftTalon.set( ControlMode.PercentOutput, 0);
+		frontRightTalon.set( ControlMode.PercentOutput, 0);
+		backLeftTalon.set(ControlMode.PercentOutput, 0);
+		backRightTalon.set(ControlMode.PercentOutput, 0);
+
+	}
 	public void mechDirectionalDrive (double angle, double speed, double durration) {
-		//Sets motor timeouts
-		/*FrontRight.setExpiration(durration);
-		FrontLeft.setExpiration(durration);
-		BackRight.setExpiration(durration);
-		BackLeft.setExpiration(durration);*/
 		
-		double millisecondsToRun = durration; // Timeout
+		
+		double millisecondsToRun = durration*1000000; // Timeout
 		double initTime = RobotController.getFPGATime();
 		
 		//Conversion from polar to coordinate system
 		double rad = Math.toRadians(angle);
 		double xVal = Math.cos(rad) * speed;
 		double yVal = Math.sin(rad) * speed;
-		
 		//Drives the motors
 		while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
 			frontRightTalon.set(ControlMode.PercentOutput,(yVal - xVal)/1.45);
 			backLeftTalon.set(ControlMode.PercentOutput, (yVal - xVal)/1.45);
 			frontLeftTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
 			backRightTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
+			//System.out.println("init"+initTime);
+			//System.out.println(RobotController.getFPGATime());
+		}
+		
+	}
+	public void mechDirectionalDriveGyro (double angle, double speed, double durration,Gyro gyro) {
+		
+		//gyro.reset();
+		double millisecondsToRun = durration*1000000; // Timeout
+		double initTime = RobotController.getFPGATime();
+		
+		//Conversion from polar to coordinate system
+		
+		//Drives the motors
+		while (RobotController.getFPGATime() - initTime <= millisecondsToRun){
+			//System.out.println(gyro.getAngle());
+			double rad = Math.toRadians(angle+gyro.getAngle());
+			double xVal = Math.cos(rad) * speed;
+			double yVal = Math.sin(rad) * speed;
+			
+			//mDriveWPI.driveCartesian(yVal, xVal, 0, gyro.getAngle());
+			frontRightTalon.set(ControlMode.PercentOutput,(yVal - xVal)/1.45);
+			backLeftTalon.set(ControlMode.PercentOutput, (yVal - xVal)/1.45);
+			frontLeftTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
+			backRightTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
+			//System.out.println("init"+initTime);
+			//System.out.println(RobotController.getFPGATime());
 		}
 		
 	}
@@ -165,6 +198,7 @@ public class MecanumDrive extends Subsystem {
 		backLeftTalon.set(ControlMode.PercentOutput, speed);
 		frontLeftTalon.set(ControlMode.PercentOutput, speed);
 		backRightTalon.set(ControlMode.PercentOutput, -speed);
+		//System.out.println(OI.getGyroA().getAngle());
 	}
 	
 	public double getFRValue(){

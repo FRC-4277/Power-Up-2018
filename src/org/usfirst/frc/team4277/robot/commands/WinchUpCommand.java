@@ -24,7 +24,7 @@ public class WinchUpCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.climber.fastClimb();
-    	System.out.println("Hey hey");
+    	System.out.println("Winching up");
     }
 
     // Make this return true when this Command no longer needs to run execute()

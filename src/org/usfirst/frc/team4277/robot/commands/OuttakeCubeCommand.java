@@ -1,52 +1,42 @@
 package org.usfirst.frc.team4277.robot.commands;
 
 import org.usfirst.frc.team4277.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveTimed extends Command {
+public class OuttakeCubeCommand extends Command {
 
-	private double driveForewardSpeed;
-	private double time;
-	
-	 public DriveTimed() {
-		 DriveForewardTimed(2.0,0.2);     
-	    }
-	 
-	public void DriveForewardTimed(double time, double speed) {
-        requires(Robot.driveTrain);
-        this.driveForewardSpeed = speed;
-        this.time = time;
-       
+    public OuttakeCubeCommand() {
+        // eg. requires(chassis);
+    	requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(time);
+        Robot.intake.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println ("Executing; Time since intialized: " + Double.toString(timeSinceInitialized()));
-    	Robot.driveTrain.mechDirectionalDrive(0.0, driveForewardSpeed, time);
+    	Robot.intake.pullCubeIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	System.out.println ("Finished; Time since intialized: " + Double.toString(timeSinceInitialized()));
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.driveTrain.stop();
+        Robot.intake.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.stop();
+    	Robot.intake.stop();
     }
 }
