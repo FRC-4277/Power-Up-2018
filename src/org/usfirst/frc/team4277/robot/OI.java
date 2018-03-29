@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI implements ClonePortMap{
+public class OI implements PortMap{
 	
 	public static Joystick driveStick = new Joystick(JOYSTICK);
 	public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);

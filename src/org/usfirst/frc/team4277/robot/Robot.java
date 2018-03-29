@@ -47,7 +47,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the build.properties file in the
  * project. This is a test
  */
-public class Robot extends TimedRobot implements ClonePortMap {
+public class Robot extends TimedRobot implements PortMap {
 
 	static String gameData;
 	public static boolean isSwitchLeft;

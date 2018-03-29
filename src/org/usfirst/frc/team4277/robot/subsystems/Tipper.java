@@ -12,7 +12,7 @@ public class Tipper extends Subsystem implements PortMap {
 	public Solenoid tipperSolenoid;
 
 	public Tipper (int modNumber, int channel) {
-	//	tipperSolenoid = new Solenoid(modNumber, channel);
+		tipperSolenoid = new Solenoid(modNumber, channel);
 	}	
 
     public void initDefaultCommand() {
@@ -22,10 +22,10 @@ public class Tipper extends Subsystem implements PortMap {
     }
     
     public void down() {
-    //	tipperSolenoid.set(true);
+    	tipperSolenoid.set(true);
     }
     public void up() {
-    //	tipperSolenoid.set(false);
+    	tipperSolenoid.set(false);
     }
 }
 
