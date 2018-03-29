@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -29,6 +30,12 @@ public class Shooter extends Subsystem implements PortMap {
 	}
 
 	public void takeShot() {
+		leftEncoder.reset();
+		startSpinning();
+		Timer.delay(0.75);
+		stopSpinning();
+	}
+	public void shootIntake() {
 		leftEncoder.reset();
 		startSpinning();
 	}

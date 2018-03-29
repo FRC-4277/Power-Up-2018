@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4277.robot.commands.auto.groups;
 
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDriveBack;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoSpinLeftR;
@@ -21,7 +22,7 @@ public class AutoLeftClose extends CommandGroup {
     		addSequential(new AutoSpinLeftR(50));//make left
     		addSequential(new AutoDriveBack(1.5));
     		addSequential(new AutoStop());
-    		addSequential(new IntakeCubeCommand());
+    		addSequential(new Shoot());
     //	}
     	
         // Add Commands here:

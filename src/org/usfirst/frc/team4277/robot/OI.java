@@ -10,8 +10,9 @@ package org.usfirst.frc.team4277.robot;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCommandGroup;
-import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.WinchDownCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
 
@@ -35,8 +36,8 @@ public class OI implements PortMap{
 
 	public OI() {
 		//Pilot Controls
-		//JoystickButton shooterTrigger = new JoystickButton(driveStick, 0);
-		//shooterTrigger.whileHeld(new Shoot());
+		JoystickButton shooterTrigger = new JoystickButton(driveStick, 1);
+		shooterTrigger.whenPressed(new Shoot());
 		
 		JoystickButton intakeButton = new JoystickButton (driveStick, 6);
 		intakeButton.whileHeld(new OuttakeCubeCommand());

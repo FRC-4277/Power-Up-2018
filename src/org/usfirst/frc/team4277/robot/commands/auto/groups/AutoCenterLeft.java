@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4277.robot.commands.auto.groups;
 
 import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDriveBack;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDriveSideGyro;
@@ -21,7 +22,7 @@ public class AutoCenterLeft extends CommandGroup {
     	addSequential(new AutoSpinLeftR(180));
     	addSequential(new AutoDriveBack(2.0));
     	addSequential(new AutoStop());
-    	addSequential(new OuttakeCubeCommand());
+    	addSequential(new Shoot());
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
