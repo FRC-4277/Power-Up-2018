@@ -9,12 +9,13 @@ package org.usfirst.frc.team4277.robot;
 
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.Drive;
-import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
 import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
+import org.usfirst.frc.team4277.robot.commands.auto.AutoCenter;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoLeft;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoRight;
@@ -90,6 +91,7 @@ public class Robot extends TimedRobot implements PortMap {
 		sendableChooser.addDefault("Drive", new AutoDriveStraight());
 		sendableChooser.addObject("Left", new AutoLeft());
 		sendableChooser.addObject("Right", new AutoRight());
+		sendableChooser.addObject("Center", new AutoCenter());
 		// sendableChooser.addObject("Drive Forward", new AutoDriveStraight());
 
 		// Add commands
