@@ -4,6 +4,9 @@ public class Preferences {
 	
 	public static final String SHOOTER_SPEED = "ShooterSpeed";
 	public static final double SHOOTER_DEFAULT_SPEED = 0.25;
+	public static final String SHOOTER_SLOW_SPEED = "SlowShooterSpeed";
+	public static final double SLOWSHOOTER_DEFAULT_SPEED = 0.25;
+	
 	
 	public static final String INTAKE_SPEED = "IntakeSpeed";
 	public static final double INTAKE_DEFAULT_SPEED = 0.6;

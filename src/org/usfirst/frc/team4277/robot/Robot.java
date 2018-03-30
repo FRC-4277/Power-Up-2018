@@ -196,6 +196,7 @@ public class Robot extends TimedRobot implements PortMap {
 		if (autoCommand != null) {
 			autoCommand.cancel();
 		}
+		new TipperDownCommand().start();
 	}
 
 	/**

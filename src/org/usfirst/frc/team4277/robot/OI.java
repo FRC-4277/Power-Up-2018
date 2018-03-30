@@ -10,9 +10,10 @@ package org.usfirst.frc.team4277.robot;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCommandGroup;
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
-import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
+import org.usfirst.frc.team4277.robot.commands.OuttakeCommandGroup;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
+import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
+import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchDownCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchUpCommand;
 
@@ -29,18 +30,18 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 public class OI implements PortMap{
 	
 	public static Joystick driveStick = new Joystick(JOYSTICK);
-	public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
-	public static Joystick xboxController = new Joystick(2);
+	//public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
+	//public static Joystick xboxController = new Joystick(2);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	public static DigitalInput photoElectric = new DigitalInput(0);
 
 	public OI() {
 		//Pilot Controls
 		JoystickButton shooterTrigger = new JoystickButton(driveStick, 1);
-		shooterTrigger.whenPressed(new Shoot());
+		shooterTrigger.whileHeld(new Shoot());
 		
 		JoystickButton intakeButton = new JoystickButton (driveStick, 6);
-		intakeButton.whileHeld(new OuttakeCubeCommand());
+		intakeButton.whileHeld(new OuttakeCommandGroup());
 		
 		JoystickButton outtakeButton = new JoystickButton (driveStick, 4);
 		outtakeButton.whenPressed(new IntakeCommandGroup());		
@@ -57,15 +58,15 @@ public class OI implements PortMap{
 		JoystickButton winchDownButton = new JoystickButton(driveStick, 11);
 		winchDownButton.whileHeld(new WinchDownCommand());
 		
-		/*JoystickButton tipperEngageButton = new JoystickButton(driveStick, 10);
-		tipperEngageButton.whenPressed(new TipperUpCommand());
+		JoystickButton tipperEngageButton = new JoystickButton(driveStick, 10);
+		tipperEngageButton.whenPressed(new TipperDownCommand());
 		
 		JoystickButton tipperDisengageButton = new JoystickButton(driveStick, 12);
-		tipperDisengageButton.whenPressed(new TipperDownCommand());*/
+		tipperDisengageButton.whenPressed(new TipperUpCommand());
 		
 		
 		//XboxButtonControllers
-		JoystickButton intakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_X);
+		/*JoystickButton intakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_X);
 		intakeXboxButton.whileHeld(new OuttakeCubeCommand());
 		
 		JoystickButton outtakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_B);
@@ -75,7 +76,7 @@ public class OI implements PortMap{
 		climbUpXboxButton.whileHeld(new ClimberLaunchCommand());
 		
 		JoystickButton climbDownXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_A);
-		climbDownXboxButton.whileHeld(new ClimberRetractCommand());
+		climbDownXboxButton.whileHeld(new ClimberRetractCommand());*/
 	}
 	
 	
@@ -109,9 +110,9 @@ public class OI implements PortMap{
 	public static Joystick getdriveStick(){
 		return driveStick;
 	}
-	public static boolean getdSTrigger() {
-		return dSTrigger.get();
-	}
+	//public static boolean getdSTrigger() {
+	//	return dSTrigger.get();
+	//}
 	public static double getGyro() {
 		return gyro.getAngle();
 	}

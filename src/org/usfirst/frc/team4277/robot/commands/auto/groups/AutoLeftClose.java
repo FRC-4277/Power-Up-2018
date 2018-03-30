@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4277.robot.commands.auto.groups;
 
-import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDriveBack;
@@ -17,7 +16,7 @@ public class AutoLeftClose extends CommandGroup {
     public AutoLeftClose() {
     	//OI.gyro.reset();
     //	if(Robot.isSwitchLeft) {
-    		addSequential(new AutoDrive(1.4));
+    		addSequential(new AutoDrive(1.8));
     		//addSequential(new AutoDriveSide(180,2.0));
     		addSequential(new AutoSpinLeftR(50));//make left
     		addSequential(new AutoDriveBack(1.5));

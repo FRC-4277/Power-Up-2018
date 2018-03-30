@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class IntakeCommandGroup extends CommandGroup {
 
     public IntakeCommandGroup() {
-    	addParallel(new TipperDownCommand());
-    	addParallel(new IntakeCubeCommand());
-    	addParallel(new ShootIntakeCommand());
     	addSequential(new TipperUpCommand());
+    	addParallel(new IntakeCubeCommand());
+    	addParallel(new ShootSlow());
+    	//addSequential(new TipperDownCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

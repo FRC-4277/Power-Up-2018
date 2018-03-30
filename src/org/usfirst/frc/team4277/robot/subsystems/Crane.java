@@ -25,7 +25,7 @@ public class Crane extends Subsystem {
 		System.out.println("Crane Launch");
 		climberLauncherMotor.set(ControlMode.PercentOutput, craneSpeed);
 		//Timer.delay(craneWait);
-		stop();
+		//stop();
 	}
 
 	public void Retract () { //temp name for test
@@ -36,7 +36,7 @@ public class Crane extends Subsystem {
 		System.out.println("Crane Launch");
 		climberLauncherMotor.set(ControlMode.PercentOutput, craneSpeed);
 		//Timer.delay(craneWait);
-		stop();
+		//stop();
 	}
 	public void stop() {
 		System.out.println("Crane Stop");

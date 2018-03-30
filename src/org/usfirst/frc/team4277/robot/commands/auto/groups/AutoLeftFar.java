@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4277.robot.commands.auto.groups;
 
-import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDriveBack;
@@ -18,7 +17,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoLeftFar extends CommandGroup {
 
     public AutoLeftFar() {
-    	addSequential(new AutoDrive(2.4));
+    	addSequential(new AutoDrive(2.65));
     	addSequential(new AutoSpinRightL(55));
     	addSequential(new AutoDriveSideGyro(180,2.7));
     	//addSequential(new AutoDrive(3.1));

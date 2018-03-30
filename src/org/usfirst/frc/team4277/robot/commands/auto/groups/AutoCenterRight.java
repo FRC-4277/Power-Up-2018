@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4277.robot.commands.auto.groups;
 
-import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team4277.robot.commands.auto.AutoDriveBack;
