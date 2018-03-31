@@ -37,7 +37,9 @@ public class Climber extends Subsystem {
 		winchRightMotor.set(ControlMode.PercentOutput, -1);	}		
 	public void reversefastClimb() {
 		//double fastClimbSpeed = Robot.prefs.getDouble(Preferences.CLIMBER_SPEED_FAST, Preferences.CLIMBER_DEFAULT_SPEED); //TODO add this to preferences
-		climbAtSpeed(-1);
+		//climbAtSpeed(-1);
+		winchLeftMotor.set(ControlMode.PercentOutput, 1);
+		winchRightMotor.set(ControlMode.PercentOutput, 1);
 	}
 	
 	public void climbAtSpeed(double speed) {

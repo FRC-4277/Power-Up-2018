@@ -13,6 +13,7 @@ import org.usfirst.frc.team4277.robot.commands.IntakeCommandGroup;
 import org.usfirst.frc.team4277.robot.commands.IntakeShooterAdjustGroup;
 import org.usfirst.frc.team4277.robot.commands.OuttakeCommandGroup;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
+import org.usfirst.frc.team4277.robot.commands.ShootBack;
 import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
 import org.usfirst.frc.team4277.robot.commands.TipperUpCommand;
 import org.usfirst.frc.team4277.robot.commands.WinchDownCommand;
@@ -67,6 +68,9 @@ public class OI implements PortMap{
 		
 		JoystickButton vaultOuttake = new JoystickButton(driveStick, 2);
 		vaultOuttake.whileHeld(new OuttakeCommandGroup());
+		
+		JoystickButton shootOut = new JoystickButton(driveStick, 7);
+		shootOut.whileHeld(new ShootBack());
 		
 		
 		//XboxButtonControllers

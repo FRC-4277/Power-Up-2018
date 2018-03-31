@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoDriveStraight extends CommandGroup {
 
     public AutoDriveStraight() {
-    	addSequential(new AutoDrive(2.75));
+    	addSequential(new AutoDrive(2.5));
     	addSequential(new AutoStop());
     	//addSequential(new AutoSpinRightL(5000));
         // Add Commands here:

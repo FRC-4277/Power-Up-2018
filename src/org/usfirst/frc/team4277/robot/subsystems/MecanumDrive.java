@@ -157,8 +157,9 @@ public class MecanumDrive extends Subsystem {
 			backLeftTalon.set(ControlMode.PercentOutput, (yVal - xVal)/1.45);
 			frontLeftTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
 			backRightTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
-			//System.out.println("init"+initTime);
-			//System.out.println(RobotController.getFPGATime());
+			System.out.println("init"+initTime);
+			System.out.println("Time" + RobotController.getFPGATime());
+			System.out.println(" time to run" + millisecondsToRun);
 		}
 		
 	}
@@ -183,7 +184,7 @@ public class MecanumDrive extends Subsystem {
 			frontLeftTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
 			backRightTalon.set(ControlMode.PercentOutput, (yVal + xVal)/1.45);
 			//System.out.println("init"+initTime);
-			//System.out.println(RobotController.getFPGATime());
+			System.out.println(RobotController.getFPGATime());
 		}
 		
 	}

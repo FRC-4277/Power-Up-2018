@@ -40,7 +40,8 @@ public class Intake extends Subsystem implements PortMap {
 	public void pushCubeOut() {
 		System.out.println("Push out");
 		//double intakeSpeed = Robot.prefs.getDouble(Preferences.INTAKE_SPEED, Preferences.INTAKE_DEFAULT_SPEED);
-		runIntake(-0.6);
+		intakeMotorRight.set(ControlMode.PercentOutput, -0.6);
+		intakeMotorLeft.set(ControlMode.PercentOutput, (0.9));
 	}
 
 	public void stop() {
@@ -52,7 +53,7 @@ public class Intake extends Subsystem implements PortMap {
 	public void runIntake(double speed) {
 		SmartDashboard.putNumber(Preferences.INTAKE_SPEED, speed);
 		intakeMotorRight.set(ControlMode.PercentOutput, speed);
-		intakeMotorLeft.set(ControlMode.PercentOutput, -speed);
+		intakeMotorLeft.set(ControlMode.PercentOutput, -(speed+0.3));
 	}
 	
 	public void lowerIntake(boolean state) {
