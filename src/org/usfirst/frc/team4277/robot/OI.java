@@ -10,6 +10,7 @@ package org.usfirst.frc.team4277.robot;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCommandGroup;
+import org.usfirst.frc.team4277.robot.commands.IntakeShooterAdjustGroup;
 import org.usfirst.frc.team4277.robot.commands.OuttakeCommandGroup;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
@@ -31,7 +32,7 @@ public class OI implements PortMap{
 	
 	public static Joystick driveStick = new Joystick(JOYSTICK);
 	//public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
-	//public static Joystick xboxController = new Joystick(2);
+	public static Joystick xboxController = new Joystick(2);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 	public static DigitalInput photoElectric = new DigitalInput(0);
 
@@ -41,7 +42,7 @@ public class OI implements PortMap{
 		shooterTrigger.whileHeld(new Shoot());
 		
 		JoystickButton intakeButton = new JoystickButton (driveStick, 6);
-		intakeButton.whileHeld(new OuttakeCommandGroup());
+		intakeButton.whileHeld(new IntakeShooterAdjustGroup());
 		
 		JoystickButton outtakeButton = new JoystickButton (driveStick, 4);
 		outtakeButton.whenPressed(new IntakeCommandGroup());		
@@ -64,19 +65,22 @@ public class OI implements PortMap{
 		JoystickButton tipperDisengageButton = new JoystickButton(driveStick, 12);
 		tipperDisengageButton.whenPressed(new TipperUpCommand());
 		
+		JoystickButton vaultOuttake = new JoystickButton(driveStick, 2);
+		vaultOuttake.whileHeld(new OuttakeCommandGroup());
+		
 		
 		//XboxButtonControllers
 		/*JoystickButton intakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_X);
 		intakeXboxButton.whileHeld(new OuttakeCubeCommand());
 		
 		JoystickButton outtakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_B);
-		outtakeXboxButton.whileHeld(new IntakeCubeCommand());
+		outtakeXboxButton.whileHeld(new IntakeCubeCommand());*/
 		
 		JoystickButton climbUpXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_Y);
-		climbUpXboxButton.whileHeld(new ClimberLaunchCommand());
+		climbUpXboxButton.whileHeld(new TipperDownCommand());
 		
 		JoystickButton climbDownXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_A);
-		climbDownXboxButton.whileHeld(new ClimberRetractCommand());*/
+		climbDownXboxButton.whileHeld(new TipperUpCommand());
 	}
 	
 	

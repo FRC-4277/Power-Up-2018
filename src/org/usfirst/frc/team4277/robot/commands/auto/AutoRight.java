@@ -1,8 +1,8 @@
 package org.usfirst.frc.team4277.robot.commands.auto;
 
 import org.usfirst.frc.team4277.robot.Robot;
+import org.usfirst.frc.team4277.robot.commands.auto.groups.AutoDriveStraight;
 import org.usfirst.frc.team4277.robot.commands.auto.groups.AutoRightClose;
-import org.usfirst.frc.team4277.robot.commands.auto.groups.AutoRightFar;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -23,7 +23,7 @@ public class AutoRight extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.isSwitchLeft) {
-    		new AutoRightFar().start();
+    		new AutoDriveStraight().start();
     	}
     	else if (!Robot.isSwitchLeft) {
     		new AutoRightClose().start();
