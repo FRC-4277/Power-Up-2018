@@ -4,6 +4,7 @@ import org.usfirst.frc.team4277.robot.OI;
 import org.usfirst.frc.team4277.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -25,16 +26,20 @@ public class IntakeCubeCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.intake.pullCubeIn();
+    	Robot.shooter.startSlowSpinning();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+		SmartDashboard.putBoolean("Intake Sensor",OI.getPhotoElectric() );
+
         return !OI.getPhotoElectric();
     }
 
     // Called once after isFinished returns true
     protected void end() { 
     	Robot.intake.stop();
+    	Robot.shooter.stopSpinning();
     }
 
     // Called when another command which requires one or more of the same

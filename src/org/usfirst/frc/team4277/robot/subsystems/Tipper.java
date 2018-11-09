@@ -3,6 +3,7 @@ package org.usfirst.frc.team4277.robot.subsystems;
 import org.usfirst.frc.team4277.robot.PortMap;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
@@ -26,6 +27,11 @@ public class Tipper extends Subsystem implements PortMap {
     }
     public void up() {
     	tipperSolenoid.set(false);
+	}
+
+	public void cannon() {
+		down();
+    	Timer.delay(0.5);
+    	up();
     }
 }
-

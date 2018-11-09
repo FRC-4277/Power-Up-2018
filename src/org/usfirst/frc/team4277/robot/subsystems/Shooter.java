@@ -37,14 +37,14 @@ public class Shooter extends Subsystem implements PortMap {
 	}*/
 	public void shootIntake() {
 		//leftEncoder.reset();
-		startSpinning();
+		startSlowSpinning();
 	}
 
 	public void startSpinning() {
 		double shooterSpeed = Robot.prefs.getDouble(Preferences.SHOOTER_SPEED, Preferences.SHOOTER_DEFAULT_SPEED);
 		SmartDashboard.putNumber(Preferences.SHOOTER_SPEED, shooterSpeed);
-		leftMotor.set(ControlMode.PercentOutput, -0.73);
-		rightMotor.set(ControlMode.PercentOutput, 0.73);
+		leftMotor.set(ControlMode.PercentOutput, -shooterSpeed);
+		rightMotor.set(ControlMode.PercentOutput, shooterSpeed);
 
 		SmartDashboard.putNumber("Shooter:  Left speed", leftMotor.getMotorOutputPercent());
 		SmartDashboard.putNumber("Shooter:  Right speed", rightMotor.getMotorOutputPercent());
@@ -61,10 +61,10 @@ public class Shooter extends Subsystem implements PortMap {
 
 	}
 	public void startSlowSpinning() {
-		double shooterSlowSpeed = Robot.prefs.getDouble(Preferences.SHOOTER_SLOW_SPEED, Preferences.SLOWSHOOTER_DEFAULT_SPEED);
+		double shooterSlowSpeed = 0.5;
 		SmartDashboard.putNumber(Preferences.SHOOTER_SPEED, shooterSlowSpeed);
-		leftMotor.set(ControlMode.PercentOutput, -shooterSlowSpeed);
-		rightMotor.set(ControlMode.PercentOutput, shooterSlowSpeed);
+		leftMotor.set(ControlMode.PercentOutput, -0.3);
+		rightMotor.set(ControlMode.PercentOutput, 0.3);
 		SmartDashboard.putNumber("Shooter:  Left speed", leftMotor.getMotorOutputPercent());
 		SmartDashboard.putNumber("Shooter:  Right speed", rightMotor.getMotorOutputPercent());
 

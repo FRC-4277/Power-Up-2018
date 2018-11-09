@@ -10,8 +10,10 @@ package org.usfirst.frc.team4277.robot;
 import org.usfirst.frc.team4277.robot.commands.ClimberLaunchCommand;
 import org.usfirst.frc.team4277.robot.commands.ClimberRetractCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeCommandGroup;
+import org.usfirst.frc.team4277.robot.commands.IntakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.IntakeShooterAdjustGroup;
 import org.usfirst.frc.team4277.robot.commands.OuttakeCommandGroup;
+import org.usfirst.frc.team4277.robot.commands.OuttakeCubeCommand;
 import org.usfirst.frc.team4277.robot.commands.Shoot;
 import org.usfirst.frc.team4277.robot.commands.ShootBack;
 import org.usfirst.frc.team4277.robot.commands.TipperDownCommand;
@@ -35,7 +37,7 @@ public class OI implements PortMap{
 	//public static JoystickButton dSTrigger = new JoystickButton(driveStick,1);
 	public static Joystick xboxController = new Joystick(2);
 	public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
-	public static DigitalInput photoElectric = new DigitalInput(0);
+	public static DigitalInput photoElectric = new DigitalInput(1);
 
 	public OI() {
 		//Pilot Controls
@@ -74,17 +76,25 @@ public class OI implements PortMap{
 		
 		
 		//XboxButtonControllers
-		/*JoystickButton intakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_X);
+		JoystickButton intakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_X);
 		intakeXboxButton.whileHeld(new OuttakeCubeCommand());
 		
 		JoystickButton outtakeXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_B);
-		outtakeXboxButton.whileHeld(new IntakeCubeCommand());*/
+		outtakeXboxButton.whileHeld(new IntakeCubeCommand());
 		
 		JoystickButton climbUpXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_Y);
 		climbUpXboxButton.whileHeld(new TipperDownCommand());
 		
 		JoystickButton climbDownXboxButton = new JoystickButton (xboxController, XBOX_BUTTON_A);
 		climbDownXboxButton.whileHeld(new TipperUpCommand());
+		
+//		JoystickButton winchUpXboxButton = new JoystickButton (xboxController, XBOX_JOY_LEFT_BUTTON);
+//		winchUpXboxButton.whileHeld(new WinchUpCommand());
+		
+//		JoystickButton winchDownXboxButton = new JoystickButton (xboxController, XBOX_JOY_RIGHT_BUTTON);
+//		winchDownXboxButton.whileHeld(new WinchDownCommand());
+		
+		
 	}
 	
 	

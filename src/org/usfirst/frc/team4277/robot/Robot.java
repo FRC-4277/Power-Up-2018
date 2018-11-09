@@ -112,6 +112,7 @@ public class Robot extends TimedRobot implements PortMap {
 		LiveWindow.add(new Shoot());
 		LiveWindow.add(new TipperDownCommand());
 		LiveWindow.add(new TipperUpCommand());
+
 	            
 		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
 		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
@@ -206,6 +207,11 @@ public class Robot extends TimedRobot implements PortMap {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		// comp.setClosedLoopControl(true);
+		SmartDashboard.putBoolean("Intake Sensor",OI.getPhotoElectric() );
+		if (OI.getPhotoElectric())
+			SmartDashboard.putString("Intake Sensor True", "TRUE has been tripped");
+		if (!OI.getPhotoElectric())
+			SmartDashboard.putString("Intake Sensor False", "False has been tripped");
 	}
 
 	/**

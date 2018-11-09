@@ -9,8 +9,9 @@ public class IntakeCommandGroup extends CommandGroup {
 
     public IntakeCommandGroup() {
     	addSequential(new TipperUpCommand());
-    	addParallel(new IntakeCubeCommand());
-    	addParallel(new ShootSlow());
+    	addSequential(new IntakeCubeCommand());
+    	//addParallel(new ShootSlow());
+    	addSequential(new TipperDownCommand());
     	//addSequential(new TipperDownCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());

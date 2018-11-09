@@ -11,14 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4277.robot.OI;
 import org.usfirst.frc.team4277.robot.Robot;
-//import org.usfirst.frc.team4277.robot.*;
 import org.usfirst.frc.team4277.robot.subsystems.*;
 
 /**
  * An example command.  You can replace me with your own command.
  */
 public class Drive extends Command {
-	private boolean gyroDrive;
+	//private boolean gyroDrive;
 
     public Drive() {
         // Use requires() here to declare subsystem dependencies
@@ -29,13 +28,17 @@ public class Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	gyroDrive = false;
+    	//gyroDrive = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	Robot.driveTrain.mechJoystickDrive(OI.getdriveStick());
+    	if (OI.getdriveStick().getRawAxis(3) < 0) {
+    		Robot.driveTrain.mechJoystickDrive(OI.getdriveStick(), OI.getGyro());
+    	}
+    	else if(OI.getdriveStick().getRawAxis(3) > 0) {
+    		Robot.driveTrain.mechJoystickDrive(OI.getdriveStick(), 0.00);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -53,7 +53,7 @@ public class Intake extends Subsystem implements PortMap {
 	public void runIntake(double speed) {
 		SmartDashboard.putNumber(Preferences.INTAKE_SPEED, speed);
 		intakeMotorRight.set(ControlMode.PercentOutput, speed);
-		intakeMotorLeft.set(ControlMode.PercentOutput, -(speed+0.3));
+		intakeMotorLeft.set(ControlMode.PercentOutput, -(speed));
 	}
 	
 	public void lowerIntake(boolean state) {
